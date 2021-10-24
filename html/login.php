@@ -5,11 +5,11 @@ echo 'Login Page';
 
 ?>
 
-<form action="../handlers/signup.php" method="POST">
+<form action="../handlers/login.php" method="POST">
     <table>
         <tr>
             <td>Username or Email</td>
-            <td><input type="text" name="usernameoremail"></td>
+            <td><input type="text" name="usernameOrEmail"></td>
         </tr>
         <tr>
             <td>Password</td>

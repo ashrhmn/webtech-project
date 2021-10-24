@@ -22,3 +22,8 @@ function mutate($sql){
     echo '<script>alert("'.$con->error.'")</script>';
     return false;
 }
+
+function query($sql){
+    $con = getConnection();
+    return $con->query($sql);
+}
