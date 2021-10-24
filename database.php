@@ -13,3 +13,12 @@ function getConnection(){
     }
     return $connection;
 }
+
+function mutate($sql){
+    $con = getConnection();
+    if($con->query($sql)===TRUE){
+        return true;
+    }
+    echo '<script>alert("'.$con->error.'")</script>';
+    return false;
+}

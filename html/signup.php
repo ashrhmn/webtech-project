@@ -45,6 +45,14 @@ if (isset($_COOKIE['isLoggedIn'])) {
             <td><input type="date" name="dateOfBirth"></td>
         </tr>
         <tr>
+            <td>Address</td>
+            <td><input type="text" name="address"></td>
+        </tr>
+        <tr>
+            <td>Phone</td>
+            <td><input type="text" name="phone"></td>
+        </tr>
+        <tr>
             <td><a href="login.php">Login</a></td>
             <td><input type="submit" name="signup" value="Sign Up"></td>
         </tr>

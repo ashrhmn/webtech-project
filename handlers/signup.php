@@ -18,6 +18,8 @@ if(isset($_POST['signup'])){
     $password2 = $_POST['password2'];
     $gender = $_POST['gender'];
     $dateOfBirth = $_POST['dateOfBirth'];
+    $address = $_POST['address'];
+    $phone = $_POST['phone'];
 
     if(hasEmptyStr([$username,$email,$password,$password2,$gender])){
         echo 'Invalid input';
@@ -29,16 +31,19 @@ if(isset($_POST['signup'])){
         return;
     }
 
-    echo 'sex'.$gender;
+    $sql = "INSERT INTO users(name, username, password, address, phone, gender, dateOfBirth) VALUES ('".$name."','".$username."','".$password."','".$address."','".$phone."','".$gender."','".$dateOfBirth."')";
+    
+    require_once('../database.php');
+    
+    if(mutate($sql)){
+        header('location: ../html/login.php');
+        return;
+    }
+    
+    echo 'Sign Up Error';
     
 
     return;
 }
 
 echo 'Submit error';
-
-require_once('../database.php');
-
-$conn = getConnection();
-
-$res = $conn->query('select * from users');
