@@ -2,11 +2,11 @@
 
 
 function getConnection(){
-    $db_host = 'localhost';
-    $db_port = 3307;
-    $db_name = 'DCMS';
-    $db_user = 'root';
-    $db_password = 'mysql';
+    $db_host = 'ashrhmn.com';
+    $db_port = 3306;
+    $db_name = 'dcms';
+    $db_user = 'dcms';
+    $db_password = 'ash';
     $connection = new mysqli($db_host,$db_user,$db_password,$db_name,$db_port);
     if($connection->connect_error){
         die('Connection Failed'.$connection->connect_error);
