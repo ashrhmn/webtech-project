@@ -1,10 +1,10 @@
 <?php
 
+require_once('../database.php');
 function isUserLoggedIn()
 {
     if (isset($_COOKIE['token'])) {
         $token = $_COOKIE['token'];
-        require_once('../database.php');
 
         $result = query("select * from session where token='" . $token . "'");
         if ($result->num_rows > 0) {
@@ -16,16 +16,14 @@ function isUserLoggedIn()
     return false;
 }
 
-function getLoggedInUser()
+function getLoggedInUsername()
 {
     if (isset($_COOKIE['token'])) {
         $token = $_COOKIE['token'];
-        require_once('../database.php');
-
         $result = query("select * from session where token='" . $token . "'");
         if ($result->num_rows > 0) {
             if($row = $result->fetch_assoc()){
-                return array('username'=>$row['username'],'role'=>$row['role']);
+                return $row['username'];
             }
         }
         setcookie('token', null, -1, '/');
