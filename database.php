@@ -2,7 +2,7 @@
 
 
 function getConnection(){
-    $db_host = 'ashrhmn.com';
+    $db_host = 'localhost';
     $db_port = 3306;
     $db_name = 'dcms';
     $db_user = 'dcms';

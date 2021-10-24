@@ -31,3 +31,19 @@ function getLoggedInUsername()
     }
     return null;
 }
+
+function getLoggedInUser(){
+    if (isset($_COOKIE['token'])) {
+        $token = $_COOKIE['token'];
+        $sql = "select u.id as id, u.name as name, u.username as username, u.email as email,u.role as role, u.address as address, u.gender as gender, u.dateOfBirth as dateOfBirth, u.phone as phone from session as s left join users as u on u.username=s.username where token='" . $token . "'";
+        $result = query($sql);
+        if ($result->num_rows > 0) {
+            if($row = $result->fetch_assoc()){
+                return $row;
+            }
+        }
+        setcookie('token', null, -1, '/');
+        return null;
+    }
+    return null;
+}

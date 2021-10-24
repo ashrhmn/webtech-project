@@ -16,8 +16,9 @@ include("nav.php");
 require_once('../Repo/UserRepo.php');
 
 if(isUserLoggedIn()){
-    $username = getLoggedInUsername();
-    echo $username.' is logged in';
+    if(isUserLoggedIn()){
+        header('location: dashboard.php');
+    }
     return;
 }
 header('location: home.php');

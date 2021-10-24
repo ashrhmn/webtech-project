@@ -24,24 +24,7 @@ if (isset($_POST['login'])) {
                 $token = base64_encode(random_bytes(37));
                 setcookie('token', $token, time() + (365 * 24 * 3600), '/');
                 if (mutate("insert into session (username,token) values('" . $row['username'] . "','" . $token . "')")) {
-                    switch ($row['role']) {
-                        case 'Admin':
-                            header('location: ../roles/admin/dashboard.php');
-                            break;
-                        case 'Doctor':
-                            header('location: ../roles/doctor/dashboard.php');
-                            break;
-                        case 'Employee':
-                            header('location: ../roles/employee/dashboard.php');
-                            break;
-                        case 'Patient':
-                            header('location: ../roles/patient/dashboard.php');
-                            break;
-                        default:
-                            echo 'Invalid role, contact admins';
-                            return;
-                            break;
-                    }
+                    header('location: ../html/dashboard.php');
                 } else {
                     echo 'Error creating session, internal error';
                     return;
