@@ -18,7 +18,7 @@ if (isset($_COOKIE['isLoggedIn'])) {
         </tr>
         <tr>
             <td>Email</td>
-            <td><input type="text" name="email"></td>
+            <td><input type="email" name="email"></td>
         </tr>
         <tr>
             <td>Full Name</td>
@@ -26,11 +26,11 @@ if (isset($_COOKIE['isLoggedIn'])) {
         </tr>
         <tr>
             <td>Pasword</td>
-            <td><input type="text" name="password"></td>
+            <td><input type="password" name="password"></td>
         </tr>
         <tr>
             <td>Confirm Password</td>
-            <td><input type="text" name="password2"></td>
+            <td><input type="password" name="password2"></td>
         </tr>
         <tr>
             <td>Gender</td>

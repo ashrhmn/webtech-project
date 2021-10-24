@@ -13,7 +13,7 @@ echo 'Login Page';
         </tr>
         <tr>
             <td>Password</td>
-            <td><input type="text" name="password"></td>
+            <td><input type="password" name="password"></td>
         </tr>
         <tr>
             <td><a href="signup.php">Sign Up</a></td>
