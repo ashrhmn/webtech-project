@@ -2,8 +2,8 @@
 
 
 function getConnection(){
-    $db_host = 'localhost';
-    $db_port = 3306;
+    $db_host = '127.0.0.1';
+    $db_port = 3307;
     $db_name = 'dcms';
     $db_user = 'dcms';
     $db_password = 'ash';
