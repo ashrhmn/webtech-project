@@ -1,5 +1,5 @@
 <?php
-include("nav.php");
+// include("nav.php");
 
 require_once('../Repo/UserRepo.php');
 
@@ -8,4 +8,4 @@ if (isUserLoggedIn()) {
     return;
 }
 
-header('location: home.php');
+include('home.php');

@@ -13,6 +13,7 @@ services:
       - 3307:3306
     volumes:
       - ./config/db-dump:/docker-entrypoint-initdb.d
+
   myadmin:
     container_name: wt-myadmin
     depends_on:
@@ -22,3 +23,12 @@ services:
       - db:db
     ports:
       - 3607:80
+
+  server:
+    image: php:8.0-apache
+    ports:
+      - "81:80"
+    volumes:
+      - ./config/apache2.conf:/etc/apache2/apache2.conf
+      - ./:/var/www/html
+    container_name: php-apache
