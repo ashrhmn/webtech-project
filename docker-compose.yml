@@ -10,12 +10,11 @@ services:
       MYSQL_USER: dcms
       MYSQL_PASSWORD: ash
       MYSQL_DATABASE: dcms
-    ports:
-      - 3307:3306
+    # ports:
+    #   - 3307:3306
     volumes:
-      - ./mysql:/var/lib/mysql
+      - ./mysql_data:/var/lib/mysql
 
-    #   - ./config/db-dump:/docker-entrypoint-initdb.d
 
   myadmin:
     container_name: wt-myadmin
@@ -31,14 +30,7 @@ services:
     build: ./config/apache
     image: wt-php-apache
     ports:
-      - "81:80"
-    # command: #"docker-php-ext-install mysqli && php-apache"
-    #     - /bin/sh
-    #     - -c
-    #     - |
-    #         docker-php-ext-install mysqli 
-    #         echo "extension installed.....starting php-fpm........................................"
-    #         php-apache
+      - "80:80"
     volumes:
       - ./config/apache/apache2.conf:/etc/apache2/apache2.conf
       - ./:/var/www/html
