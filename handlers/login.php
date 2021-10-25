@@ -19,7 +19,7 @@ if (isset($_POST['login'])) {
         if ($row = $result->fetch_assoc()) {
             if ($row['password'] == $password) {
                 //Login Succcessful
-                echo 'Logged in succ';
+                // echo 'Logged in succ';
 
                 $token = base64_encode(random_bytes(37));
                 setcookie('token', $token, time() + (365 * 24 * 3600), '/');
