@@ -3,7 +3,8 @@ version: "3"
 services:
   db:
     container_name: wt-mysql
-    image: mysql
+    build: ./config/mysql
+    image: wt-mysql
     environment:
       MYSQL_ROOT_PASSWORD: mysql
       MYSQL_USER: dcms
@@ -12,7 +13,9 @@ services:
     ports:
       - 3307:3306
     volumes:
-      - ./config/db-dump:/docker-entrypoint-initdb.d
+      - ./mysql:/var/lib/mysql
+
+    #   - ./config/db-dump:/docker-entrypoint-initdb.d
 
   myadmin:
     container_name: wt-myadmin
@@ -25,7 +28,7 @@ services:
       - 3607:80
 
   server:
-    build: .
+    build: ./config/apache
     image: wt-php-apache
     ports:
       - "81:80"
@@ -37,7 +40,7 @@ services:
     #         echo "extension installed.....starting php-fpm........................................"
     #         php-apache
     volumes:
-      - ./config/apache2.conf:/etc/apache2/apache2.conf
+      - ./config/apache/apache2.conf:/etc/apache2/apache2.conf
       - ./:/var/www/html
     container_name: wt-apache
     links:
