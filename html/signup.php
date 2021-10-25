@@ -1,5 +1,4 @@
 <?php
-include("nav.php");
 
 require_once('../Repo/UserRepo.php');
 
@@ -8,6 +7,7 @@ if (isUserLoggedIn()) {
     return;
 }
 
+include("nav.php");
 ?>
 
 <form action="../handlers/signup.php" method="POST">

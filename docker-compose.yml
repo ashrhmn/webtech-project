@@ -25,10 +25,20 @@ services:
       - 3607:80
 
   server:
-    image: php:8.0-apache
+    build: .
+    image: wt-php-apache
     ports:
       - "81:80"
+    # command: #"docker-php-ext-install mysqli && php-apache"
+    #     - /bin/sh
+    #     - -c
+    #     - |
+    #         docker-php-ext-install mysqli 
+    #         echo "extension installed.....starting php-fpm........................................"
+    #         php-apache
     volumes:
       - ./config/apache2.conf:/etc/apache2/apache2.conf
       - ./:/var/www/html
-    container_name: php-apache
+    container_name: wt-apache
+    links:
+      - db:db
