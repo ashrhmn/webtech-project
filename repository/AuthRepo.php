@@ -6,9 +6,19 @@ function isUserLoggedIn()
     if (isset($_COOKIE['token'])) {
         $token = $_COOKIE['token'];
 
-        $result = query("select * from session where token='" . $token . "'");
-        if ($result->num_rows > 0) {
-            return true;
+        if($token!=""){
+
+            $sessionFile = fopen('session.txt','r');
+
+            while(!feof($sessionFile)){
+                $data = fgets($sessionFile);
+                if($data!=""){
+                    $session = explode('|',$data);
+                    if(trim($session[1])==trim($token)){
+                        return true;
+                    }
+                }
+            }
         }
         setcookie('token', null, -1, '/');
         return false;
@@ -16,21 +26,21 @@ function isUserLoggedIn()
     return false;
 }
 
-function getLoggedInUsername()
-{
-    if (isset($_COOKIE['token'])) {
-        $token = $_COOKIE['token'];
-        $result = query("select * from session where token='" . $token . "'");
-        if ($result->num_rows > 0) {
-            if ($row = $result->fetch_assoc()) {
-                return $row['username'];
-            }
-        }
-        setcookie('token', null, -1, '/');
-        return null;
-    }
-    return null;
-}
+// function getLoggedInUsername()
+// {
+//     if (isset($_COOKIE['token'])) {
+//         $token = $_COOKIE['token'];
+//         $result = query("select * from session where token='" . $token . "'");
+//         if ($result->num_rows > 0) {
+//             if ($row = $result->fetch_assoc()) {
+//                 return $row['username'];
+//             }
+//         }
+//         setcookie('token', null, -1, '/');
+//         return null;
+//     }
+//     return null;
+// }
 
 function getLoggedInUser()
 {
