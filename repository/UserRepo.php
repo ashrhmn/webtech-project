@@ -72,7 +72,7 @@ function credsStatus($usernameOrEmail, $password) //-> 1=loginSucc, 0=wrongPassw
     return -1;
 }
 
-function isSignUpSuccessful($name,$username,$email,$password,$address,$phone,$gender,$dateOfBirth)
+function isSignUpSuccessful($name, $username, $email, $password, $address, $phone, $gender, $dateOfBirth)
 {
     $sql = "INSERT INTO users(name, username,email, password, address, phone, gender, dateOfBirth) VALUES ('" . $name . "','" . $username . "','" . $email . "','" . $password . "','" . $address . "','" . $phone . "','" . $gender . "','" . $dateOfBirth . "')";
 
@@ -80,4 +80,13 @@ function isSignUpSuccessful($name,$username,$email,$password,$address,$phone,$ge
         return true;
     }
     return false;
+}
+
+function destroyLoginSession($token)
+{
+    if (!mutate("delete from session where token='" . $token . "'")) {
+        // echo '<script>alert("Logged out but session deleting failed, you may want to delete session manually from your account")</script>';
+        return false;
+    }
+    return true;
 }
