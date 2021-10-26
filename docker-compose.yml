@@ -4,7 +4,7 @@ services:
   db:
     container_name: wt-mysql
     build: ./data/mysql
-    image: wt-mysql
+    image: ashrhmn/wt-mysql
     environment:
       MYSQL_ROOT_PASSWORD: mysql
       MYSQL_USER: dcms
@@ -28,7 +28,7 @@ services:
 
   server:
     build: ./data/apache
-    image: wt-php-apache
+    image: ashrhmn/wt-php-apache
     ports:
       - "80:80"
     volumes:
