@@ -3,7 +3,7 @@ version: "3"
 services:
   db:
     container_name: wt-mysql
-    build: ./config/mysql
+    build: ./data/mysql
     image: wt-mysql
     environment:
       MYSQL_ROOT_PASSWORD: mysql
@@ -13,7 +13,7 @@ services:
     # ports:
     #   - 3307:3306
     volumes:
-      - ./mysql_data:/var/lib/mysql
+      - ./data/mysql_data:/var/lib/mysql
 
 
   myadmin:
@@ -27,12 +27,12 @@ services:
       - 3607:80
 
   server:
-    build: ./config/apache
+    build: ./data/apache
     image: wt-php-apache
     ports:
       - "80:80"
     volumes:
-      - ./config/apache/apache2.conf:/etc/apache2/apache2.conf
+      - ./data/apache/apache2.conf:/etc/apache2/apache2.conf
       - ./:/var/www/html
     container_name: wt-apache
     links:

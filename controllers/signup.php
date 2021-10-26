@@ -34,10 +34,10 @@ if (isset($_POST['signup'])) {
 
     $sql = "INSERT INTO users(name, username,email, password, address, phone, gender, dateOfBirth) VALUES ('" . $name . "','" . $username . "','" . $email . "','" . $password . "','" . $address . "','" . $phone . "','" . $gender . "','" . $dateOfBirth . "')";
 
-    require_once('../database.php');
+    require_once('../repository/database.php');
 
     if (mutate($sql)) {
-        header('location: ../html/login.php');
+        header('location: ../views/login.php');
         return;
     }
 

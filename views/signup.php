@@ -1,6 +1,6 @@
 <?php
 
-require_once('../Repo/UserRepo.php');
+require_once('../repository/UserRepo.php');
 
 if (isUserLoggedIn()) {
     header('location: dashboard.php');
@@ -10,7 +10,7 @@ if (isUserLoggedIn()) {
 include("nav.php");
 ?>
 
-<form action="../handlers/signup.php" method="POST">
+<form action="../controllers/signup.php" method="POST">
     <table>
         <tr>
             <td>Username</td>
