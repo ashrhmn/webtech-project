@@ -71,3 +71,13 @@ function credsStatus($usernameOrEmail, $password) //-> 1=loginSucc, 0=wrongPassw
     }
     return -1;
 }
+
+function isSignUpSuccessful($name,$username,$email,$password,$address,$phone,$gender,$dateOfBirth)
+{
+    $sql = "INSERT INTO users(name, username,email, password, address, phone, gender, dateOfBirth) VALUES ('" . $name . "','" . $username . "','" . $email . "','" . $password . "','" . $address . "','" . $phone . "','" . $gender . "','" . $dateOfBirth . "')";
+
+    if (mutate($sql)) {
+        return true;
+    }
+    return false;
+}

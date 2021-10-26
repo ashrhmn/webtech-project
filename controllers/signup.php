@@ -32,18 +32,13 @@ if (isset($_POST['signup'])) {
         return;
     }
 
-    $sql = "INSERT INTO users(name, username,email, password, address, phone, gender, dateOfBirth) VALUES ('" . $name . "','" . $username . "','" . $email . "','" . $password . "','" . $address . "','" . $phone . "','" . $gender . "','" . $dateOfBirth . "')";
+    require_once('../repository/UserRepo.php');
 
-    require_once('../repository/database.php');
-
-    if (mutate($sql)) {
+    if(isSignUpSuccessful($name,$username,$email,$password,$address,$phone,$gender,$dateOfBirth)){
         header('location: ../views/login.php');
         return;
     }
-
     echo 'Sign Up Error';
-
-
     return;
 }
 
