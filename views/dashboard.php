@@ -1,6 +1,6 @@
 <?php
 
-require_once('../Repo/UserRepo.php');
+require_once('../repository/UserRepo.php');
 
 $user = getLoggedInUser();
 
