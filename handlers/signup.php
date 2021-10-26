@@ -37,7 +37,7 @@ if (isset($_POST['signup'])) {
     require_once('../database.php');
 
     if (mutate($sql)) {
-        header('location: ../html/login.php');
+        header('location: ../views/login.php');
         return;
     }
 

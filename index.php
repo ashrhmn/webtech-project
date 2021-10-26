@@ -1,5 +1,5 @@
 <?php
 
-header('location: html');
+header('location: views');
 
 ?>

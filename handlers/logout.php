@@ -10,5 +10,5 @@ if(isset($_COOKIE['token'])){
         echo '<script>alert("Logged out but session deleting failed, you may want to delete session manually from your account")</script>';
     }
 
-    header('location: ../html/home.php');
+    header('location: ../views/home.php');
 }

@@ -24,7 +24,7 @@ if (isset($_POST['login'])) {
                 $token = base64_encode(random_bytes(37));
                 setcookie('token', $token, time() + (365 * 24 * 3600), '/');
                 if (mutate("insert into session (username,token) values('" . $row['username'] . "','" . $token . "')")) {
-                    header('location: ../html/dashboard.php');
+                    header('location: ../views/dashboard.php');
                 } else {
                     echo 'Error creating session, internal error';
                     return;
