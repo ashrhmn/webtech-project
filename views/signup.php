@@ -10,7 +10,7 @@ if (isUserLoggedIn()) {
 include("nav.php");
 ?>
 
-<form action="../handlers/signup.php" method="POST">
+<form action="../controllers/signup.php" method="POST">
     <table>
         <tr>
             <td>Username</td>

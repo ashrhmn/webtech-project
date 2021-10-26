@@ -9,7 +9,7 @@ if ($user) {
     include('./roles/' . strtolower($user['role']) . '/dashboard.php');
 ?>
 
-<a href="../handlers/logout.php">Logout</a>
+<a href="../controllers/logout.php">Logout</a>
 
 <?php
     return;
