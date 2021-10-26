@@ -10,7 +10,7 @@ if (isset($_POST['login'])) {
         echo 'Invalid username/email and/or password';
         return;
     }
-    require_once('../database.php');
+    require_once('../repository/database.php');
 
     $sql = "select * from  users where username='" . $usernameOrEmail . "' or email='" . $usernameOrEmail . "'";
     $result = query($sql);
