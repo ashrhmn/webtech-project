@@ -1,31 +1,6 @@
 version: "3"
 
 services:
-  db:
-    container_name: wt-mysql
-    build: ./data/mysql
-    image: ashrhmn/wt-mysql
-    environment:
-      MYSQL_ROOT_PASSWORD: mysql
-      MYSQL_USER: dcms
-      MYSQL_PASSWORD: ash
-      MYSQL_DATABASE: dcms
-    # ports:
-    #   - 3307:3306
-    volumes:
-      - ./data/mysql_data:/var/lib/mysql
-
-
-  myadmin:
-    container_name: wt-myadmin
-    depends_on:
-      - db
-    image: phpmyadmin
-    links:
-      - db:db
-    ports:
-      - 3607:80
-
   server:
     build: ./data/apache
     image: ashrhmn/wt-php-apache

@@ -85,7 +85,6 @@ function isSignUpSuccessful($name, $username, $email, $password, $address, $phon
 function destroyLoginSession($token)
 {
     if (!mutate("delete from session where token='" . $token . "'")) {
-        // echo '<script>alert("Logged out but session deleting failed, you may want to delete session manually from your account")</script>';
         return false;
     }
     return true;
