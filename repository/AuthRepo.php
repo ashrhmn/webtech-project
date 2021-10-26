@@ -26,36 +26,44 @@ function isUserLoggedIn()
     return false;
 }
 
-// function getLoggedInUsername()
-// {
-//     if (isset($_COOKIE['token'])) {
-//         $token = $_COOKIE['token'];
-//         $result = query("select * from session where token='" . $token . "'");
-//         if ($result->num_rows > 0) {
-//             if ($row = $result->fetch_assoc()) {
-//                 return $row['username'];
-//             }
-//         }
-//         setcookie('token', null, -1, '/');
-//         return null;
-//     }
-//     return null;
-// }
-
-function getLoggedInUser()
+function getLoggedInUsername()
 {
     if (isset($_COOKIE['token'])) {
         $token = $_COOKIE['token'];
-        $sql = "select u.id as id, u.name as name, u.username as username, u.email as email,u.role as role, u.address as address, u.gender as gender, u.dateOfBirth as dateOfBirth, u.phone as phone from session as s left join users as u on u.username=s.username where token='" . $token . "'";
-        $result = query($sql);
-        if ($result->num_rows > 0) {
-            if ($row = $result->fetch_assoc()) {
-                return $row;
+        if($token!=""){
+            $sessionFile = fopen('session.txt','r');
+            while(!feof($sessionFile)){
+                $data = fgets($sessionFile);
+                if($data!=""){
+                    $session = explode('|',$data);
+                    if(trim($session[1])==trim($token)){
+                        return $session[0];
+                    }
+                }
             }
         }
         setcookie('token', null, -1, '/');
         return null;
     }
+    return null;
+}
+
+function getLoggedInUser()
+{
+    $username = getLoggedInUsername();
+    if($username){
+        $usersFile = fopen('users.txt','r');
+        while(!feof($usersFile)){
+            $data = fgets($usersFile);
+            if($data!=""){
+                $user = explode('|',$data);
+                if(trim($user[1])==$username){
+                    return array('id'=>$user[0],'username'=>$user[1],'email'=>$user[2],'name'=>$user[3],'role'=>$user[4],'address'=>$user[5],'gender'=>$user[6],'dateOfBirth'=>$user[7],'phone'=>$user[8]);
+                }
+            }
+        }
+    }
+    setcookie('token', null, -1, '/');
     return null;
 }
 
