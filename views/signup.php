@@ -1,6 +1,6 @@
 <?php
 
-require_once('../repository/UserRepo.php');
+require_once('../repository/AuthRepo.php');
 
 if (isUserLoggedIn()) {
     header('location: dashboard.php');

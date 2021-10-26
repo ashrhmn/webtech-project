@@ -10,7 +10,7 @@ if (isset($_POST['login'])) {
         return;
     }
 
-    require_once('../repository/UserRepo.php');
+    require_once('../repository/AuthRepo.php');
     $status = credsStatus($usernameOrEmail, $password); //-> 1=loginSucc, 0=wrongPassword, -1=userNotFound, 2=sesionError
     switch($status){
         case 1:

@@ -32,7 +32,7 @@ if (isset($_POST['signup'])) {
         return;
     }
 
-    require_once('../repository/UserRepo.php');
+    require_once('../repository/AuthRepo.php');
 
     if(isSignUpSuccessful($name,$username,$email,$password,$address,$phone,$gender,$dateOfBirth)){
         header('location: ../views/login.php');
