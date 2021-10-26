@@ -6,7 +6,7 @@ $user = getLoggedInUser();
 
 if ($user) {
     print_r($user);
-    include('../roles/' . strtolower($user['role']) . '/dashboard.php');
+    include('./roles/' . strtolower($user['role']) . '/dashboard.php');
 ?>
 
 <a href="../handlers/logout.php">Logout</a>
