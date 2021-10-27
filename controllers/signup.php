@@ -1,5 +1,7 @@
 <?php
-
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 function hasEmptyStr($strings)
 {
     $n = count($strings);
@@ -35,6 +37,7 @@ if (isset($_POST['signup'])) {
     require_once('../repository/AuthRepo.php');
 
     if(isSignUpSuccessful($name,$username,$email,$password,$address,$phone,$gender,$dateOfBirth)){
+        echo 'Here';
         header('location: ../views/login.php');
         return;
     }
