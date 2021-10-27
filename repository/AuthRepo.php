@@ -109,8 +109,27 @@ function isSignUpSuccessful($name, $username, $email, $password, $address, $phon
 
 function destroyLoginSession($token)
 {
-    if (!mutate("delete from session where token='" . $token . "'")) {
-        return false;
+    $flag = false;
+    $sessionFile = fopen("session.txt",'r');
+    $users = array();
+    while(!feof($sessionFile)){
+        $data = fgets($sessionFile);
+        if($data!=""){
+            $userToken = explode('|',$data);
+            if(trim($userToken[1])!=$token){
+                array_push($users,$data);
+            }
+            else{
+                $flag = true;
+            }
+        }
     }
-    return true;
+    fclose($sessionFile);
+    $sessionFile = fopen("session.txt",'w');
+
+    for($i=0;$i<count($users);++$i){
+        fwrite($sessionFile,$users[$i]);
+    }
+
+    return $flag;
 }
