@@ -98,12 +98,13 @@ function credsStatus($usernameOrEmail, $password) //-> 1=loginSucc, 0=wrongPassw
 
 function isSignUpSuccessful($name, $username, $email, $password, $address, $phone, $gender, $dateOfBirth)
 {
-    $sql = "INSERT INTO users(name, username,email, password, address, phone, gender, dateOfBirth) VALUES ('" . $name . "','" . $username . "','" . $email . "','" . $password . "','" . $address . "','" . $phone . "','" . $gender . "','" . $dateOfBirth . "')";
-
-    if (mutate($sql)) {
-        return true;
+    $role = "Patient"; //default
+    $id = time().'-'.$username.'-'.$phone; //randomGen
+    $user = $id.'|'.$username.'|'.$email.'|'.$name.'|'.$role.'|'.$address.'|'.$gender.'|'.$dateOfBirth.'|'.$phone.'|'.$password.'|';
+    if(!fwrite(fopen('users.txt','a'),$user)){
+        return false;
     }
-    return false;
+    return true;
 }
 
 function destroyLoginSession($token)
