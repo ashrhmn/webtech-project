@@ -6,10 +6,17 @@ $user = getLoggedInUser();
 
 if ($user) {
     print_r($user);
-    include('./roles/' . strtolower($user['role']) . '/dashboard.php');
 ?>
 
-<a href="../controllers/logout.php">Logout</a>
+    <h1>Welcome <?= $user['name'] ?></h1>
+    <a href="settings.php">Account Settings</a>
+    
+    <?php
+    include('./roles/' . strtolower($user['role']) . '/dashboard.php');
+    ?>
+
+
+    <a href="../controllers/logout.php">Logout</a>
 
 <?php
     return;
