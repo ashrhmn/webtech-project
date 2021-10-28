@@ -1,6 +1,5 @@
 <?php
 
-require_once('database.php');
 function isUserLoggedIn()
 {
     if (isset($_COOKIE['token'])) {
