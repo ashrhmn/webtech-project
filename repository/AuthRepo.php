@@ -86,7 +86,7 @@ function credsStatus($usernameOrEmail, $password) //-> 1=loginSucc, 0=wrongPassw
             if (trim($user[1]) == $usernameOrEmail) {
                 if (trim($user[9]) == $password) {
                     $sessionFile = fopen($session_txt, 'a');
-                    $token = base64_encode(random_bytes(37));
+                    $token = bin2hex(random_bytes(37));
                     if (!fwrite($sessionFile, $usernameOrEmail . '|' . $token."\n")) {
                         //sessionError
                         return 2;

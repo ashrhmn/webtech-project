@@ -9,6 +9,6 @@ $user = getLoggedInUser();
 
 if (!$user) {
     setcookie('token', null, -1, '/');
-    header('location: login.php');
+    header('location: ../login.php');
     return;
 }
