@@ -4,7 +4,7 @@
 require_once('../repository/AuthRepo.php');
 
 if (isUserLoggedIn()) {
-    header('location: dashboard.php');
+    header('location: dashboard');
     return;
 }
 

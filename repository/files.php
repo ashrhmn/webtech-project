@@ -8,3 +8,12 @@ function getRootDir(){
         return '../data/fs/';
     }
 }
+
+
+// function getFileSystemDir(){
+//     return getRootDir().'';
+// }
+
+// echo __DIR__;
+
+// echo dirname(__FILE__);
