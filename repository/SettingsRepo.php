@@ -18,7 +18,7 @@ function changePassword($oldPassword, $newpassword) //notAuthenticated=-1, wrong
     while (!feof($usersFile)) {
         $data = fgets($usersFile);
         if ($data != "") {
-            $user = explode($data, '|');
+            $user = explode('|',$data);
             if (trim($user[9]) == $oldPassword) {
                 $modedUser = trim($user[0]) . "|" . trim($user[1]) . "|" . trim($user[2]) . "|" . trim($user[3]) . "|" . trim($user[4]) . "|" . trim($user[5]) . "|" . trim($user[6]) . "|" . trim($user[7]) . "|" . trim($user[8]) . "|" . $newpassword;
                 array_push($dummyUsers, $modedUser);
