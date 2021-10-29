@@ -1,13 +1,19 @@
 <?php
 
+require_once('files.php');
+
+$users_txt = getRootDir()."users.txt";
+$session_txt = getRootDir()."session.txt";
+
 function isUserLoggedIn()
 {
+    global $session_txt;
     if (isset($_COOKIE['token'])) {
         $token = $_COOKIE['token'];
 
         if ($token != "") {
 
-            $sessionFile = fopen('../data/fs/session.txt', 'r');
+            $sessionFile = fopen($session_txt, 'r');
 
             while (!feof($sessionFile)) {
                 $data = fgets($sessionFile);
@@ -27,10 +33,11 @@ function isUserLoggedIn()
 
 function getLoggedInUsername()
 {
+    global $session_txt;
     if (isset($_COOKIE['token'])) {
         $token = $_COOKIE['token'];
         if ($token != "") {
-            $sessionFile = fopen('../data/fs/session.txt', 'r');
+            $sessionFile = fopen($session_txt, 'r');
             while (!feof($sessionFile)) {
                 $data = fgets($sessionFile);
                 if ($data != "") {
@@ -49,9 +56,10 @@ function getLoggedInUsername()
 
 function getLoggedInUser()
 {
+    global $users_txt;
     $username = getLoggedInUsername();
     if ($username) {
-        $usersFile = fopen('../data/fs/users.txt', 'r');
+        $usersFile = fopen($users_txt, 'r');
         while (!feof($usersFile)) {
             $data = fgets($usersFile);
             if ($data != "") {
@@ -68,14 +76,16 @@ function getLoggedInUser()
 
 function credsStatus($usernameOrEmail, $password) //-> 1=loginSucc, 0=wrongPassword, -1=userNotFound, 2=sesionError
 {
-    $usersFile = fopen("../data/fs/users.txt", 'r');
+    global $users_txt;
+    global $session_txt;
+    $usersFile = fopen($users_txt, 'r');
     while (!feof($usersFile)) {
         $data = fgets($usersFile);
         if ($data != "") {
             $user = explode('|', $data);
             if (trim($user[1]) == $usernameOrEmail) {
                 if (trim($user[9]) == $password) {
-                    $sessionFile = fopen("../data/fs/session.txt", 'a');
+                    $sessionFile = fopen($session_txt, 'a');
                     $token = base64_encode(random_bytes(37));
                     if (!fwrite($sessionFile, $usernameOrEmail . '|' . $token."\n")) {
                         //sessionError
@@ -97,10 +107,12 @@ function credsStatus($usernameOrEmail, $password) //-> 1=loginSucc, 0=wrongPassw
 
 function isSignUpSuccessful($name, $username, $email, $password, $address, $phone, $gender, $dateOfBirth)
 {
+    global $users_txt;
     $role = "Patient"; //default
     $id = time().'-'.$username.'-'.$phone; //randomGen
     $user = $id.'|'.$username.'|'.$email.'|'.$name.'|'.$role.'|'.$address.'|'.$gender.'|'.$dateOfBirth.'|'.$phone.'|'.$password."\n";
-    if(!fwrite(fopen('../data/fs/users.txt','a'),$user)){
+    $users_file = fopen($users_txt,'a');
+    if(!fwrite($users_file,$user)){
         return false;
     }
     return true;
@@ -108,8 +120,9 @@ function isSignUpSuccessful($name, $username, $email, $password, $address, $phon
 
 function destroyLoginSession($token)
 {
+    global $session_txt;
     $flag = false;
-    $sessionFile = fopen("../data/fs/session.txt",'r');
+    $sessionFile = fopen($session_txt,'r');
     $users = array();
     while(!feof($sessionFile)){
         $data = fgets($sessionFile);
@@ -124,7 +137,7 @@ function destroyLoginSession($token)
         }
     }
     fclose($sessionFile);
-    $sessionFile = fopen("../data/fs/session.txt",'w');
+    $sessionFile = fopen($session_txt,'w');
 
     for($i=0;$i<count($users);++$i){
         fwrite($sessionFile,$users[$i]);

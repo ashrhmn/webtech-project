@@ -14,7 +14,7 @@ if (isset($_POST['login'])) {
     $status = credsStatus($usernameOrEmail, $password); //-> 1=loginSucc, 0=wrongPassword, -1=userNotFound, 2=sesionError
     switch($status){
         case 1:
-            header('location: ../views/dashboard.php');
+            header('location: ../views/dashboard');
             break;
         case 0:
             echo 'Wrong Password';
