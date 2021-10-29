@@ -4,6 +4,7 @@ require_once('AuthRepo.php');
 require_once('files.php');
 
 $users_txt = getRootDir() . "users.txt";
+$session_txt = getRootDir() . "session.txt";
 
 function changePassword($oldPassword, $newpassword) //notAuthenticated=-1, wrongPassword=0, successfull=1
 {
@@ -39,4 +40,29 @@ function changePassword($oldPassword, $newpassword) //notAuthenticated=-1, wrong
     }
     fclose($usersFile);
     return 1;
+}
+
+
+function getAllSession()
+{
+    global $session_txt;
+    $username = getLoggedInUsername();
+    if (!$username) {
+        return null;
+    }
+    $sessions = array();
+
+    $sessionFile = fopen($session_txt,'r');
+
+    while(!feof($sessionFile)){
+        $data = fgets($sessionFile);
+        if($data!=""){
+            $sessionData = explode('|',$data);
+            if(trim($sessionData[0])==$username){
+                array_push($sessions,trim($sessionData[1]));
+            }
+        }
+    }
+    return $sessions;
+
 }
