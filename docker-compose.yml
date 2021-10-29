@@ -9,4 +9,15 @@ services:
     volumes:
       - ./data/apache/apache2.conf:/etc/apache2/apache2.conf
       - ./:/var/www/html
+      - fs:/usr/data/fs
     container_name: wt-apache
+  file:
+    image: filebrowser/filebrowser
+    container_name: wt-files
+    ports:
+      - "81:80"
+    volumes:
+      - fs:/srv
+volumes:
+  fs:
+    name: wt-fs

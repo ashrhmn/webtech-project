@@ -9,7 +9,7 @@ if ($user) {
 ?>
 
     <h1>Welcome <?= $user['name'] ?></h1>
-    <a href="settings.php">Account Settings</a>
+    <a href="accountSettings">Account Settings</a>
     
     <?php
     include('./roles/' . strtolower($user['role']) . '/dashboard.php');
