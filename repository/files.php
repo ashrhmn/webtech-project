@@ -1,6 +1,6 @@
 <?php
 
-function getRootDir(){
+function getFsRootDir(){
     if(getenv("DOCKER_ENV")){
         return '/usr/data/fs/';
     }
