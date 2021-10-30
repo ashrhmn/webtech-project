@@ -3,6 +3,7 @@
 require_once('files.php');
 
 $users_txt = getFsRootDir()."users.txt";
+$session_txt = getFsRootDir()."session.txt";
 
 
 function isUsernameAvailable($username){
@@ -37,17 +38,18 @@ function isEmailAvailable($email){
 
 function saveUserProfileEdits($user){ //usernameUnavailable=-1, //emailAlreadyExists=0, //userNotFound=-2 saveSuccessfully=1
 
-    // require_once('AuthRepo.php');
-    // $username = getLoggedInUsername();
-    // echo $username;
-    // if($username['username']!=$user['username']){
-    //     if(!isUsernameAvailable($user['username'])){
-    //         return -1;
-    //     }
-    // }
-    // if(!isEmailAvailable($user['email'])){
-    //     return 0;
-    // }
+    require_once('AuthRepo.php');
+    $authUser = getLoggedInUser();
+    if($authUser['username']!=$user['username']){
+        if(!isUsernameAvailable($user['username'])){
+            return -1;
+        }
+    }
+    if($authUser['email']!=$user['email']){
+        if(!isEmailAvailable($user['email'])){
+            return 0;
+        }
+    }
     
     global $users_txt;
     // $username = getLoggedInUsername();
@@ -61,7 +63,7 @@ function saveUserProfileEdits($user){ //usernameUnavailable=-1, //emailAlreadyEx
         $data = fgets($usersFile);
         if ($data != "") {
             $oldUser = explode('|', $data);
-            if (trim($oldUser[1]) == $user['username']) {
+            if (trim($oldUser[0]) == $authUser['id']) {
                 $modedUser = trim($oldUser[0]) . "|" . $user['username'] . "|" . $user['email'] . "|" . $user['name'] . "|" . trim($oldUser[4]) . "|" . $user['address'] . "|" . $user['gender'] . "|" . $user['dateOfBirth'] . "|" . $user['phone'] . "|" . trim($oldUser[9]);
                 array_push($dummyUsers, $modedUser);
                 $isUserFound = true;

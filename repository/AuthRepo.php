@@ -2,8 +2,8 @@
 
 require_once('files.php');
 
-$users_txt = getFsRootDir()."users.txt";
-$session_txt = getFsRootDir()."session.txt";
+$users_txt = getFsRootDir() . "users.txt";
+$session_txt = getFsRootDir() . "session.txt";
 
 function isUserLoggedIn()
 {
@@ -31,7 +31,31 @@ function isUserLoggedIn()
     return false;
 }
 
-function getLoggedInUsername()
+// function getLoggedInUsername()
+// {
+//     global $session_txt;
+//     if (isset($_COOKIE['token'])) {
+//         $token = $_COOKIE['token'];
+//         if ($token != "") {
+//             $sessionFile = fopen($session_txt, 'r');
+//             while (!feof($sessionFile)) {
+//                 $data = fgets($sessionFile);
+//                 if ($data != "") {
+//                     $session = explode('|', $data);
+//                     if (trim($session[1]) == trim($token)) {
+//                         return $session[0];
+//                     }
+//                 }
+//             }
+//         }
+//         setcookie('token', null, -1, '/');
+//         return null;
+//     }
+//     return null;
+// }
+
+
+function getLoggedInUserId()
 {
     global $session_txt;
     if (isset($_COOKIE['token'])) {
@@ -57,14 +81,14 @@ function getLoggedInUsername()
 function getLoggedInUser()
 {
     global $users_txt;
-    $username = getLoggedInUsername();
-    if ($username) {
+    $userId = getLoggedInUserId();
+    if ($userId) {
         $usersFile = fopen($users_txt, 'r');
         while (!feof($usersFile)) {
             $data = fgets($usersFile);
             if ($data != "") {
                 $user = explode('|', $data);
-                if (trim($user[1]) == $username) {
+                if (trim($user[0]) == $userId) {
                     return array('id' => $user[0], 'username' => $user[1], 'email' => $user[2], 'name' => $user[3], 'role' => $user[4], 'address' => $user[5], 'gender' => $user[6], 'dateOfBirth' => $user[7], 'phone' => $user[8]);
                 }
             }
@@ -87,7 +111,7 @@ function credsStatus($usernameOrEmail, $password) //-> 1=loginSucc, 0=wrongPassw
                 if (trim($user[9]) == $password) {
                     $sessionFile = fopen($session_txt, 'a');
                     $token = bin2hex(random_bytes(37));
-                    if (!fwrite($sessionFile, $usernameOrEmail . '|' . $token."\n")) {
+                    if (!fwrite($sessionFile, $user[0] . '|' . $token . "|" . $_SERVER['HTTP_USER_AGENT'] . "\n")) {
                         //sessionError
                         return 2;
                     }
@@ -109,10 +133,10 @@ function isSignUpSuccessful($name, $username, $email, $password, $address, $phon
 {
     global $users_txt;
     $role = "Patient"; //default
-    $id = time().'-'.$username.'-'.$phone; //randomGen
-    $user = $id.'|'.$username.'|'.$email.'|'.$name.'|'.$role.'|'.$address.'|'.$gender.'|'.$dateOfBirth.'|'.$phone.'|'.$password."\n";
-    $users_file = fopen($users_txt,'a');
-    if(!fwrite($users_file,$user)){
+    $id = time() . '-' . $username . '-' . $phone; //randomGen
+    $user = $id . '|' . $username . '|' . $email . '|' . $name . '|' . $role . '|' . $address . '|' . $gender . '|' . $dateOfBirth . '|' . $phone . '|' . $password . "\n";
+    $users_file = fopen($users_txt, 'a');
+    if (!fwrite($users_file, $user)) {
         return false;
     }
     return true;
@@ -122,25 +146,24 @@ function destroyLoginSession($token)
 {
     global $session_txt;
     $flag = false;
-    $sessionFile = fopen($session_txt,'r');
+    $sessionFile = fopen($session_txt, 'r');
     $users = array();
-    while(!feof($sessionFile)){
+    while (!feof($sessionFile)) {
         $data = fgets($sessionFile);
-        if($data!=""){
-            $userToken = explode('|',$data);
-            if(trim($userToken[1])!=$token){
-                array_push($users,$data);
-            }
-            else{
+        if ($data != "") {
+            $userToken = explode('|', $data);
+            if (trim($userToken[1]) != $token) {
+                array_push($users, $data);
+            } else {
                 $flag = true;
             }
         }
     }
     fclose($sessionFile);
-    $sessionFile = fopen($session_txt,'w');
+    $sessionFile = fopen($session_txt, 'w');
 
-    for($i=0;$i<count($users);++$i){
-        fwrite($sessionFile,$users[$i]);
+    for ($i = 0; $i < count($users); ++$i) {
+        fwrite($sessionFile, $users[$i]);
     }
 
     return $flag;
