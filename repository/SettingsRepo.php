@@ -3,8 +3,8 @@
 require_once('AuthRepo.php');
 require_once('files.php');
 
-$users_txt = getRootDir() . "users.txt";
-$session_txt = getRootDir() . "session.txt";
+$users_txt = getFsRootDir() . "users.txt";
+$session_txt = getFsRootDir() . "session.txt";
 
 function changePassword($oldPassword, $newpassword) //notAuthenticated=-1, wrongPassword=0, successfull=1
 {
@@ -25,7 +25,7 @@ function changePassword($oldPassword, $newpassword) //notAuthenticated=-1, wrong
                 array_push($dummyUsers, $modedUser);
                 $isPasswordValid = true;
             } else {
-                array_push($dummyUsers, $data);
+                array_push($dummyUsers, trim($data));
             }
         }
     }

@@ -2,8 +2,8 @@
 
 require_once('files.php');
 
-$users_txt = getRootDir()."users.txt";
-$session_txt = getRootDir()."session.txt";
+$users_txt = getFsRootDir()."users.txt";
+$session_txt = getFsRootDir()."session.txt";
 
 function isUserLoggedIn()
 {
