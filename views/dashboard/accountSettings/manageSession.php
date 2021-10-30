@@ -18,7 +18,7 @@ if (!$sessions) {
     ?>
         <tr>
             <td><?= $sessions[$i]['token'] ?><?= $sessions[$i]['token'] == $_COOKIE['token'] ? ' (current) ' : ''  ?> <br> <?= $sessions[$i]['agent'] ?></td>
-            <td><a href="../../../controllers/AccountSettings/deleteSession.php?token=<?= $sessions[$i] ?>">Revoke</a></td>
+            <td><a href="../../../controllers/AccountSettings/deleteSession.php?token=<?= $sessions[$i]['token'] ?>">Revoke</a></td>
         </tr>
     <?php
     }
