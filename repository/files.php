@@ -5,7 +5,7 @@ function getFsRootDir(){
         return '/usr/data/fs/';
     }
     else{
-        return '../data/fs/';
+        return __DIR__.'/../data/fs/';
     }
 }
 
