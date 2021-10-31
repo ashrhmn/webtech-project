@@ -5,7 +5,7 @@ echo 'Change Password';
 ?>
 
 <form action="../../../controllers/AccountSettings/changePassword.php" method="POST">
-    <table>
+    <table border="1">
         <tr>
             <td>Old Password : </td>
             <td>

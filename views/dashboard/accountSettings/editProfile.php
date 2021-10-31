@@ -14,7 +14,7 @@ if(!$user){
 ?>
 
 <form action="../../controllers/AccountSettings/saveProfileEdits.php" method="POST">
-    <table>
+    <table border="1">
         <tr>
             <td>Username : </td>
             <td><input type="text" name="username" value="<?=$user['username']?>"></td>

@@ -2,4 +2,6 @@
 
 echo 'Admin Dashboard'; 
 
+include('manageUsers/index.php');
+
 ?>
