@@ -1,13 +1,13 @@
 <?php
 
-include(__DIR__.'/../secureRoute.php');
+include(__DIR__ . '/../secureRoute.php');
 ?>
 
 <hr>
 
 <?php
 
-require_once(__DIR__.'../../../../../../repository/UserRepo.php');
+require_once(__DIR__ . '../../../../../../repository/UserRepo.php');
 
 $allUsers = getAllUser();
 
@@ -17,14 +17,15 @@ $allUsers = getAllUser();
     <input type="submit" name="userList" value="User List">
     <input type="submit" name="addUser" value="Add User">
     <br><br>
-    <?php
+</form>
+<?php
 
-if(isset($_POST['userList'])){
+if (isset($_POST['userList'])) {
     include('userList.php');
     return;
 }
 
-if(isset($_POST['addUser'])){
+if (isset($_POST['addUser'])) {
     include('addUser.php');
     return;
 }
@@ -32,4 +33,3 @@ if(isset($_POST['addUser'])){
 include('userList.php');
 
 ?>
-</form>
