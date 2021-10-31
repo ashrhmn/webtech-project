@@ -3,13 +3,14 @@ require_once('header.php');
 print_r($user);
 ?>
 <h1>Welcome <?= $user['name'] ?></h1>
-<a href="../../controllers/logout.php">Logout</a>
+<hr>
 <br>
 <form action="#" method="POST">
     <input type="submit" name="dashboard" value="Dashboard">
     <input type="submit" name="editProfile" value="Edit Profile">
     <input type="submit" name="changePassword" value="Change Password">
     <input type="submit" name="manageSession" value="Manage Session">
+    <a href="../../controllers/logout.php">Logout</a>
 </form>
 
 <div><?php
