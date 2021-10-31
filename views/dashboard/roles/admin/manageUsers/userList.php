@@ -14,19 +14,6 @@
         <th>Phone</th>
         <th>Action</th>
     </tr>
-    <!-- <tr>
-        <td></td>
-        <td><input type="text" name="username"></td>
-        <td><input type="text" name="username"></td>
-        <td><input type="text" name="username"></td>
-        <td><input type="text" name="username"></td>
-        <td><input type="text" name="username"></td>
-        <td><input type="text" name="username"></td>
-        <td><input type="text" name="username"></td>
-        <td><input type="text" name="username"></td>
-        <td><input type="submit" value="Add New"></td>
-    </tr> -->
-
     <?php
 
     for ($i = 0; $i < count($allUsers); ++$i) {
@@ -43,7 +30,7 @@
             <td><?= $allUsers[$i]['phone'] ?></td>
             <td>
                 <a href="<?= "roles/admin/manageUsers/editUser.php?id=" . $allUsers[$i]['id'] ?>">Edit</a>
-                <a href="<?= "deleteUser.php?id=" . $allUsers[$i]['id'] ?>">Delete</a>
+                <a href="<?= "/../../../../../controllers/admin/deleteUser.php?id=" . $allUsers[$i]['id'] ?>">Delete</a>
             </td>
         </tr>
     <?php

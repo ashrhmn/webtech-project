@@ -176,3 +176,32 @@ function getUserById($id)
     setcookie('token', null, -1, '/');
     return null;
 }
+
+function deleteUser($id){
+    global $users_txt;
+    $dummyUsers = array();
+    $usersFile = fopen($users_txt, 'r');
+    $isUserFound = false;
+    while (!feof($usersFile)) {
+        $data = fgets($usersFile);
+        if ($data != "") {
+            $oldUser = explode('|', $data);
+            if (trim($oldUser[0]) == $id) {
+                $isUserFound = true;
+            } else {
+                array_push($dummyUsers, trim($data));
+            }
+        }
+    }
+    fclose($usersFile);
+    if (!$isUserFound) {
+        return false;
+    }
+
+    $usersFile = fopen($users_txt, 'w');
+    for ($i = 0; $i < count($dummyUsers); ++$i) {
+        fwrite($usersFile, $dummyUsers[$i] . "\n");
+    }
+    fclose($usersFile);
+    return true;
+}
