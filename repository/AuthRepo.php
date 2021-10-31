@@ -31,30 +31,6 @@ function isUserLoggedIn()
     return false;
 }
 
-// function getLoggedInUsername()
-// {
-//     global $session_txt;
-//     if (isset($_COOKIE['token'])) {
-//         $token = $_COOKIE['token'];
-//         if ($token != "") {
-//             $sessionFile = fopen($session_txt, 'r');
-//             while (!feof($sessionFile)) {
-//                 $data = fgets($sessionFile);
-//                 if ($data != "") {
-//                     $session = explode('|', $data);
-//                     if (trim($session[1]) == trim($token)) {
-//                         return $session[0];
-//                     }
-//                 }
-//             }
-//         }
-//         setcookie('token', null, -1, '/');
-//         return null;
-//     }
-//     return null;
-// }
-
-
 function getLoggedInUserId()
 {
     global $session_txt;

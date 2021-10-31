@@ -52,10 +52,6 @@ function saveUserProfileEdits($user){ //usernameUnavailable=-1, //emailAlreadyEx
     }
     
     global $users_txt;
-    // $username = getLoggedInUsername();
-    // if (!$username) {
-    //     return -1;
-    // }
     $dummyUsers = array();
     $usersFile = fopen($users_txt, 'r');
     $isUserFound = false;
@@ -83,4 +79,18 @@ function saveUserProfileEdits($user){ //usernameUnavailable=-1, //emailAlreadyEx
     }
     fclose($usersFile);
     return 1;
+}
+
+function getAllUser(){
+    global $users_txt;
+    $users = array();
+    $usersFile = fopen($users_txt,'r');
+    while(!feof($usersFile)){
+        $data = fgets($usersFile);
+        if($data!=""){
+            $user = explode('|',$data);
+            array_push($users,array('id'=>$user[0],'username'=>$user[1],'email'=>$user[2],'name'=>$user[3],'role'=>$user[4],'address'=>$user[5],'gender'=>$user[6],'dateOfBirth'=>$user[7],'phone'=>$user[8]));
+        }
+    }
+    return $users;
 }
