@@ -109,7 +109,7 @@ function isSignUpSuccessful($name, $username, $email, $password, $address, $phon
 {
     global $users_txt;
     $role = "Patient"; //default
-    $id = time() . '-' . $username . '-' . $phone; //randomGen
+    $id = time() . '-' . $username; //randomGen
     $user = $id . '|' . $username . '|' . $email . '|' . $name . '|' . $role . '|' . $address . '|' . $gender . '|' . $dateOfBirth . '|' . $phone . '|' . $password . "\n";
     $users_file = fopen($users_txt, 'a');
     if (!fwrite($users_file, $user)) {

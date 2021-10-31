@@ -15,6 +15,9 @@ $allUsers = getAllUser();
 
 <table border="1">
     <tr>
+        <th colspan="9" align="center">All Users</th>
+    </tr>
+    <tr>
         <th>ID</th>
         <th>Username</th>
         <th>Email</th>

@@ -6,26 +6,30 @@ print_r($user);
 <a href="../../controllers/logout.php">Logout</a>
 <br>
 <form action="#" method="POST">
+    <input type="submit" name="dashboard" value="Dashboard">
     <input type="submit" name="editProfile" value="Edit Profile">
     <input type="submit" name="changePassword" value="Change Password">
     <input type="submit" name="manageSession" value="Manage Session">
-    <div>
-        <?php
-            if (isset($_POST['editProfile'])) {
-                include('accountSettings/editProfile.php');
-            }
-            if (isset($_POST['changePassword'])) {
-                include('accountSettings/changePassword.php');
-            }
-            if (isset($_POST['manageSession'])) {
-                include('accountSettings/manageSession.php');
-            }
-            if(isset($_POST['editProfile']) || isset($_POST['changePassword']) || isset($_POST['manageSession'])){
-                ?><input type="submit" name="close" value="Close"><?php
-            }
-        ?>
-    </div>
 </form>
+
+<div><?php
+        if (isset($_POST['editProfile'])) {
+            include('accountSettings/editProfile.php');
+            return;
+        }
+        if (isset($_POST['changePassword'])) {
+            include('accountSettings/changePassword.php');
+            return;
+        }
+        if (isset($_POST['manageSession'])) {
+            include('accountSettings/manageSession.php');
+            return;
+        }
+        if (isset($_POST['dashboard'])) {
+            include('./roles/' . strtolower($user['role']) . '/dashboard.php');
+            return;
+        }
+        include('./roles/' . strtolower($user['role']) . '/dashboard.php');
+        ?></div>
 <?php
-include('./roles/' . strtolower($user['role']) . '/dashboard.php');
 return;
