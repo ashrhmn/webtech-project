@@ -2,7 +2,7 @@
 echo 'Add user';
 ?>
 <form action="../../../../../controllers/admin/addUser.php" method="POST">
-    <table>
+    <table border="1">
         <tr>
             <td>Username</td>
             <td><input type="text" name="username"></td>

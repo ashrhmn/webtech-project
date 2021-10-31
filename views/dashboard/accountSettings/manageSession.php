@@ -12,7 +12,7 @@ if (!$sessions) {
 }
 ?>
 
-<table>
+<table border="1">
     <?php
     for ($i = 0; $i < count($sessions); ++$i) {
     ?>

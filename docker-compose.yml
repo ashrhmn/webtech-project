@@ -5,7 +5,7 @@ services:
     build: ./data/apache
     image: ashrhmn/wt-php-apache
     ports:
-      - "80:80"
+      - "82:80"
     volumes:
       - ./data/apache/apache2.conf:/etc/apache2/apache2.conf
       - ./:/var/www/html

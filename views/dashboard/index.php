@@ -1,6 +1,5 @@
 <?php
 require_once('header.php');
-print_r($user);
 ?>
 <h1>Welcome <?= $user['name'] ?></h1>
 <hr>

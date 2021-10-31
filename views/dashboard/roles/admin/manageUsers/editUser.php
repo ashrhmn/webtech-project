@@ -19,7 +19,7 @@ if (!$user) {
 ?>
 
 <form action="../../../../../controllers/admin/editUser.php" method="POST">
-    <table>
+    <table border="1">
         <tr>
             <td>ID</td>
             <td><input type="text" name="id" value="<?= $user['id'] ?>" readonly></td>
@@ -68,7 +68,8 @@ if (!$user) {
             <td><input type="text" name="phone" value="<?= $user['phone'] ?>"></td>
         </tr>
         <tr>
-            <td align="center" colspan="2"><input type="submit" name="editUser" value="Save Edit"></td>
+            <td align="center"><a href="../../../../dashboard/">Go Back</a></td>
+            <td align="center"><input type="submit" name="editUser" value="Save Edit"></td>
         </tr>
     </table>
 </form>
