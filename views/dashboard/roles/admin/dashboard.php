@@ -7,10 +7,6 @@ echo 'Admin Dashboard';
 ?>
 <br>
 <form action="#" method="POST">
-    <!-- <input type="submit" name="manageEquipments" value="Equipments">
-    <input type="submit" name="manageOrders" value="Orders">
-    <input type="submit" name="manageAvailableDoctors" value="Available Doctors"> -->
-
     <a href="?tab=manageUsers">Users</a>
     <a href="?tab=equipments">Equipments</a>
     <a href="?tab=orders">Orders</a>
