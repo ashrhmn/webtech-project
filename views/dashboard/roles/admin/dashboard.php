@@ -2,6 +2,8 @@
 
 echo 'Admin Dashboard';
 
+include_once('secureRoute.php');
+
 // include('manageUsers/index.php');
 
 ?>
