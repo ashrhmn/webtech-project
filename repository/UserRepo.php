@@ -63,7 +63,7 @@ function saveUserProfileEdits($user)
         if ($data != "") {
             $oldUser = explode('|', $data);
             if (trim($oldUser[0]) == $authUser['id']) {
-                $modedUser = trim($oldUser[0]) . "|" . $user['username'] . "|" . $user['email'] . "|" . $user['name'] . "|" . trim($oldUser[4]) . "|" . $user['address'] . "|" . $user['gender'] . "|" . $user['dateOfBirth'] . "|" . $user['phone'] . "|" . trim($oldUser[9]);
+                $modedUser = trim($oldUser[0]) . "|" . $user['username'] . "|" . $user['email'] . "|" . $user['name'] . "|" . trim($oldUser[4]) . "|" . $user['address'] . "|" . $user['gender'] . "|" . $user['dateOfBirth'] . "|" . $user['phone'] . "|" . trim($oldUser[9]) . "|" . trim($oldUser[10]);
                 array_push($dummyUsers, $modedUser);
                 $isUserFound = true;
             } else {
@@ -109,7 +109,7 @@ function saveUserEdits($user, $id)
         if ($data != "") {
             $oldUser = explode('|', $data);
             if (trim($oldUser[0]) == $authUser['id']) {
-                $modedUser = trim($oldUser[0]) . "|" . $user['username'] . "|" . $user['email'] . "|" . $user['name'] . "|" . $user['role'] . "|" . $user['address'] . "|" . $user['gender'] . "|" . $user['dateOfBirth'] . "|" . $user['phone'] . "|" . trim($oldUser[9]);
+                $modedUser = trim($oldUser[0]) . "|" . $user['username'] . "|" . $user['email'] . "|" . $user['name'] . "|" . $user['role'] . "|" . $user['address'] . "|" . $user['gender'] . "|" . $user['dateOfBirth'] . "|" . $user['phone'] . "|" . trim($oldUser[9]) . "|" . trim($oldUser[10]);
                 array_push($dummyUsers, $modedUser);
                 $isUserFound = true;
             } else {
@@ -149,7 +149,7 @@ function addUser($name, $username, $email, $role, $address, $phone, $gender, $da
 {
     global $users_txt;
     $id = time() . '-' . $username; //randomGen
-    $user = $id . '|' . $username . '|' . $email . '|' . $name . '|' . $role . '|' . $address . '|' . $gender . '|' . $dateOfBirth . '|' . $phone . '|' . $username . "\n";
+    $user = $id . '|' . $username . '|' . $email . '|' . $name . '|' . $role . '|' . $address . '|' . $gender . '|' . $dateOfBirth . '|' . $phone . '|' . $username . '|assets/default.png' . "\n";
     $users_file = fopen($users_txt, 'a');
     if (!fwrite($users_file, $user)) {
         return false;
@@ -219,4 +219,34 @@ function getAllDoctor()
         }
     }
     return $users;
+}
+
+function setProPic($path){
+    global $users_txt;
+    $userId = getLoggedInUserId();
+    if (!$userId) {
+        return false;
+    }
+    $dummyUsers = array();
+    $usersFile = fopen($users_txt, 'r');
+    while (!feof($usersFile)) {
+        $data = fgets($usersFile);
+        if ($data != "") {
+            $user = explode('|', $data);
+            if (trim($user[0]) == $userId) {
+                $modedUser = trim($user[0]) . "|" . trim($user[1]) . "|" . trim($user[2]) . "|" . trim($user[3]) . "|" . trim($user[4]) . "|" . trim($user[5]) . "|" . trim($user[6]) . "|" . trim($user[7]) . "|" . trim($user[8]) . "|". trim($user[9]) . "|".$path;
+                array_push($dummyUsers, $modedUser);
+            } else {
+                array_push($dummyUsers, trim($data));
+            }
+        }
+    }
+    fclose($usersFile);
+
+    $usersFile = fopen($users_txt, 'w');
+    for ($i = 0; $i < count($dummyUsers); ++$i) {
+        fwrite($usersFile, $dummyUsers[$i] . "\n");
+    }
+    fclose($usersFile);
+    return true;
 }

@@ -65,7 +65,7 @@ function getLoggedInUser()
             if ($data != "") {
                 $user = explode('|', $data);
                 if (trim($user[0]) == $userId) {
-                    return array('id' => $user[0], 'username' => $user[1], 'email' => $user[2], 'name' => $user[3], 'role' => $user[4], 'address' => $user[5], 'gender' => $user[6], 'dateOfBirth' => $user[7], 'phone' => $user[8]);
+                    return array('id' => $user[0], 'username' => $user[1], 'email' => $user[2], 'name' => $user[3], 'role' => $user[4], 'address' => $user[5], 'gender' => $user[6], 'dateOfBirth' => $user[7], 'phone' => $user[8],'dp' => $user[10]);
                 }
             }
         }
@@ -109,8 +109,9 @@ function isSignUpSuccessful($name, $username, $email, $password, $address, $phon
 {
     global $users_txt;
     $role = "Patient"; //default
+    $dp = "assets/default.png"; //default
     $id = time() . '-' . $username; //randomGen
-    $user = $id . '|' . $username . '|' . $email . '|' . $name . '|' . $role . '|' . $address . '|' . $gender . '|' . $dateOfBirth . '|' . $phone . '|' . $password . "\n";
+    $user = $id . '|' . $username . '|' . $email . '|' . $name . '|' . $role . '|' . $address . '|' . $gender . '|' . $dateOfBirth . '|' . $phone . '|' . $password . '|' . $dp . "\n";
     $users_file = fopen($users_txt, 'a');
     if (!fwrite($users_file, $user)) {
         return false;

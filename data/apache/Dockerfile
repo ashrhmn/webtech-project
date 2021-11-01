@@ -5,6 +5,7 @@ FROM php:8.0-apache
 # COPY session.txt /usr/data/fs/session.txt
 
 RUN mkdir -p /usr/data/fs
+RUN mkdir -p /usr/data/fs/upload
 RUN touch /usr/data/fs/users.txt
 RUN touch /usr/data/fs/session.txt
 RUN touch /usr/data/fs/equipments.txt

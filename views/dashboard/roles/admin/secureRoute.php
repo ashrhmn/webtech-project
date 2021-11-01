@@ -9,4 +9,4 @@ if($user['role']!='Admin'){
     return;
 }
 
-echo '<br>Route secured for admin<br>';
+// echo '<br>Route secured for admin<br>';
