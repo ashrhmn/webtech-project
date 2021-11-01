@@ -3,8 +3,6 @@
 include(__DIR__ . '/../secureRoute.php');
 ?>
 
-<hr>
-
 <?php
 
 require_once(__DIR__ . '../../../../../../repository/UserRepo.php');
