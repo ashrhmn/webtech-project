@@ -27,3 +27,33 @@ function getAllEquipments(){
     }
     return $eqs;
 }
+
+function deleteEquipment($id){
+    global $equipment_txt;
+    $eqFile = fopen($equipment_txt,'r');
+    $eqs = array();
+    $isEqFound = false;
+    while(!feof($eqFile)){
+        $data = fgets($eqFile);
+        if($data!=""){
+            $eq = explode('|',$data);
+            if($id==$eq[0]){
+                $isEqFound = true;
+            }
+            else{
+                array_push($eqs,trim($data));
+            }
+        }
+    }
+    fclose($eqFile);
+    if(!$isEqFound){
+        echo 'Selected equipment not found';
+        return false;
+    }
+    $eqFile = fopen($equipment_txt,'w');
+    for($i=0;$i<count($eqs);++$i){
+        fwrite($eqFile,$eqs[$i]."\n");
+    }
+    return true;
+
+}
