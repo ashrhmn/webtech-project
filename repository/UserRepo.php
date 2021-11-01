@@ -84,7 +84,7 @@ function saveUserProfileEdits($user)
     return 1;
 }
 
-function saveUserEdits($user,$id)
+function saveUserEdits($user, $id)
 { //usernameUnavailable=-1, //emailAlreadyExists=0, //userNotFound=-2 saveSuccessfully=1
 
     require_once('AuthRepo.php');
@@ -161,23 +161,21 @@ function getUserById($id)
 {
     global $users_txt;
     $userId = $id;
-    if ($userId) {
-        $usersFile = fopen($users_txt, 'r');
-        while (!feof($usersFile)) {
-            $data = fgets($usersFile);
-            if ($data != "") {
-                $user = explode('|', $data);
-                if (trim($user[0]) == $userId) {
-                    return array('id' => $user[0], 'username' => $user[1], 'email' => $user[2], 'name' => $user[3], 'role' => $user[4], 'address' => $user[5], 'gender' => $user[6], 'dateOfBirth' => $user[7], 'phone' => $user[8]);
-                }
+    $usersFile = fopen($users_txt, 'r');
+    while (!feof($usersFile)) {
+        $data = fgets($usersFile);
+        if ($data != "") {
+            $user = explode('|', $data);
+            if (trim($user[0]) == $userId) {
+                return array('id' => $user[0], 'username' => $user[1], 'email' => $user[2], 'name' => $user[3], 'role' => $user[4], 'address' => $user[5], 'gender' => $user[6], 'dateOfBirth' => $user[7], 'phone' => $user[8]);
             }
         }
     }
-    setcookie('token', null, -1, '/');
     return null;
 }
 
-function deleteUser($id){
+function deleteUser($id)
+{
     global $users_txt;
     $dummyUsers = array();
     $usersFile = fopen($users_txt, 'r');

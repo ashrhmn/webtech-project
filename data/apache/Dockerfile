@@ -7,6 +7,7 @@ FROM php:8.0-apache
 RUN mkdir -p /usr/data/fs
 RUN touch /usr/data/fs/users.txt
 RUN touch /usr/data/fs/session.txt
+RUN touch /usr/data/fs/equipments.txt
 RUN chmod -R 777 /usr/data/fs/
 RUN echo "export DOCKER_ENV=true" >> /etc/apache2/envvars
 # RUN docker-php-ext-install mysqli
