@@ -31,8 +31,6 @@ services:
     #   - 3307:3306
     volumes:
       - ./data/mysql_data:/var/lib/mysql
-
-
   myadmin:
     container_name: wt-myadmin
     depends_on:
@@ -41,7 +39,7 @@ services:
     links:
       - db:db
     ports:
-      - 3607:80
+      - 3606:80
 volumes:
   fs:
     name: wt-fs
