@@ -1,10 +1,10 @@
 <?php
 
-require_once('files.php');
+//require_once('files.php');
 require_once('database.php');
 
-$users_txt = getFsRootDir() . "users.txt";
-$session_txt = getFsRootDir() . "session.txt";
+//$users_txt = getFsRootDir() . "users.txt";
+//$session_txt = getFsRootDir() . "session.txt";
 
 //function isUserLoggedIn()
 //{
