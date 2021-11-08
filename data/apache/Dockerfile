@@ -12,4 +12,4 @@ RUN touch /usr/data/fs/equipments.txt
 RUN touch /usr/data/fs/availableDoctors.txt
 RUN chmod -R 777 /usr/data/fs/
 RUN echo "export DOCKER_ENV=true" >> /etc/apache2/envvars
-# RUN docker-php-ext-install mysqli
+RUN docker-php-ext-install mysqli
