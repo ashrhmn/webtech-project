@@ -95,7 +95,7 @@ function execPreparedQuery($sql, $types, ...$args)
 	}
 }
 
-function preparedQueryToAssoc($sql, $types, ...$args)
+function preparedQueryToAssocArray($sql, $types, ...$args)
 {
 	$result = execPreparedQuery($sql, $types, ...$args);
 	if (!$result) {
@@ -106,7 +106,7 @@ function preparedQueryToAssoc($sql, $types, ...$args)
 
 function dataExistsOnPreparedQuery($sql, $types, ...$args)
 {
-	$res_array = preparedQueryToAssoc($sql, $types, ...$args);
+	$res_array = preparedQueryToAssocArray($sql, $types, ...$args);
 	if (count($res_array) > 0) {
 		return true;
 	}
