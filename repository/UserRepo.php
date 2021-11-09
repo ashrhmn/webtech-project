@@ -7,61 +7,27 @@ require_once('database.php');
 $users_txt = getFsRootDir() . "users.txt";
 $session_txt = getFsRootDir() . "session.txt";
 
-
 function saveUserEdits($user)
-{ //usernameUnavailable=-1, //emailAlreadyExists=0, //userNotFound=-2 saveSuccessfully=1
-
-	require_once('AuthRepo.php');
-	$authUser = getLoggedInUser();
-	if ($authUser['username'] != $user['username']) {
+{ //usernameUnavailable=-1, //emailAlreadyExists=0, //noInfoChanged=-2 saveSuccessfully=1
+	$oldUser = getUserById($user['id']);
+	if ($oldUser['username'] != $user['username']) {
 		if (!isUsernameAvailable($user['username'])) {
 			return -1;
 		}
 	}
-	if ($authUser['email'] != $user['email']) {
+	if ($oldUser['email'] != $user['email']) {
 		if (!isEmailAvailable($user['email'])) {
 			return 0;
 		}
 	}
 
-	if (isPreparedStatementExecuted("update users set username=?, name=?, email=?, address=?, gender=?, role=?, dateOfBirth=?, phone=? where id=?", 'ssssssssi', $user['username'], $user['name'], $user['email'], $user['address'], $user['gender'], $user['role'], $user['dateOfBirth'], $user['phone'], $authUser['id'])) {
+	if (isPreparedStatementExecuted("update users set username=?, name=?, email=?, address=?, gender=?, role=?, dateOfBirth=?, phone=? where id=?", 'ssssssssi', $user['username'], $user['name'], $user['email'], $user['address'], $user['gender'], $user['role'], $user['dateOfBirth'], $user['phone'], $oldUser['id'])) {
 		//successfull
 		return 1;
 	} else {
-		//userNotFound
+		//noInfoChanged
 		return -2;
 	}
-
-
-
-	//	global $users_txt;
-	//	$dummyUsers = array();
-	//	$usersFile = fopen($users_txt, 'r');
-	//	$isUserFound = false;
-	//	while (!feof($usersFile)) {
-	//		$data = fgets($usersFile);
-	//		if ($data != "") {
-	//			$oldUser = explode('|', $data);
-	//			if (trim($oldUser[0]) == $authUser['id']) {
-	//				$modedUser = trim($oldUser[0]) . "|" . $user['username'] . "|" . $user['email'] . "|" . $user['name'] . "|" . trim($oldUser[4]) . "|" . $user['address'] . "|" . $user['gender'] . "|" . $user['dateOfBirth'] . "|" . $user['phone'] . "|" . trim($oldUser[9]) . "|" . trim($oldUser[10]);
-	//				array_push($dummyUsers, $modedUser);
-	//				$isUserFound = true;
-	//			} else {
-	//				array_push($dummyUsers, trim($data));
-	//			}
-	//		}
-	//	}
-	//	fclose($usersFile);
-	//	if (!$isUserFound) {
-	//		return -2;
-	//	}
-	//
-	//	$usersFile = fopen($users_txt, 'w');
-	//	for ($i = 0; $i < count($dummyUsers); ++$i) {
-	//		fwrite($usersFile, $dummyUsers[$i] . "\n");
-	//	}
-	//	fclose($usersFile);
-	//	return 1;
 }
 
 //function saveUserEdits($user, $id)
@@ -143,15 +109,12 @@ function getAllUser()
 //}
 function addUser($name, $username, $email, $role, $address, $phone, $gender, $dateOfBirth)
 {
-	if (isPreparedStatementExecuted("insert into users (name, username, email, role, address, phone, gender, dateOfBirth) values(?,?,?,?,?,?,?,?>)", 'ssssssss', $name, $username, $email, $role, $address, $phone, $gender, $dateOfBirth)) {
-		return true;
-	}
-	return false;
+	return isPreparedStatementExecuted("insert into users (name, username, email, role, address, phone, gender, dateOfBirth) values(?,?,?,?,?,?,?,?>)", 'ssssssss', $name, $username, $email, $role, $address, $phone, $gender, $dateOfBirth);
 }
 
 function getUserById($id)
 {
-	return preparedQueryToAssocArray("select * from users where id=?", 'i', $id);
+	return getSingleRowIfExistsOnPreparedQuery("select * from users where id=?", 'i', $id);
 }
 
 //function getUserById($id)

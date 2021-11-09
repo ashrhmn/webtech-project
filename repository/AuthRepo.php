@@ -81,9 +81,9 @@ function getLoggedInUserId()
 	}
 	$token = $_COOKIE['token'];
 	if ($token != "") {
-		$rows = preparedQueryToAssocArray("select userId from session where token=?", 's', $token);
-		if (count($rows) > 0) {
-			return $rows[0]['userId'];
+		$row = getSingleRowIfExistsOnPreparedQuery("select userId from session where token=?", 's', $token);
+		if ($row) {
+			return $row['userId'];
 		}
 		//	$result = query('select userId from session where token=' . $token);
 		//	if ($result->num_rows > 0) {

@@ -123,6 +123,15 @@ function dataExistsOnPreparedQuery($sql, $types, ...$args)
 	return false;
 }
 
+function getSingleRowIfExistsOnPreparedQuery($sql, $types, ...$args)
+{
+	$rows = preparedQueryToAssocArray($sql, $types, ...$args);
+	if (count($rows) > 0) {
+		return $rows[0];
+	}
+	return null;
+}
+
 //$sql = "insert into session(userId, token, agent, time) values(?,?,?,?)";
 //
 ////$con = getConnection();

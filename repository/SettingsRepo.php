@@ -8,15 +8,16 @@ require_once('database.php');
 $users_txt = getFsRootDir() . "users.txt";
 $session_txt = getFsRootDir() . "session.txt";
 
-function changePassword($oldPassword, $newpassword) //notAuthenticated=-1, wrongPassword=0, successfull=1, serverError=-2
+function changePassword($oldPassword, $newpassword) //notAuthenticated=-1, wrongPassword=0, successfull=1, serverError=-2, userNotFound = -3
 {
 	$userId = getLoggedInUserId();
 	if (!$userId) {
 		return -1;
 	}
-	$rows = preparedQueryToAssocArray("select * from users where id=?", 'i', $userId);
-	if (count($rows) > 0) {
-		if ($rows[0]['password'] == $oldPassword) {
+
+	$row = getSingleRowIfExistsOnPreparedQuery("select * from users where id=?", 'i', $userId);
+	if ($row) {
+		if ($row['password'] == $oldPassword) {
 			if (isPreparedStatementExecuted("update users set password=? where id=?", 'si', $newpassword, $userId)) {
 				//changeSuccessfull
 				return 1;
@@ -27,6 +28,8 @@ function changePassword($oldPassword, $newpassword) //notAuthenticated=-1, wrong
 		//wrongPassword
 		return 0;
 	}
+	//userNotFound
+	return -3;
 }
 //function changePassword($oldPassword, $newpassword) //notAuthenticated=-1, wrongPassword=0, successfull=1
 //{
@@ -70,8 +73,7 @@ function getAllSession()
 	if (!$userId) {
 		return null;
 	}
-	$rows = preparedQueryToAssocArray("select * from session where userId=?", 'i', $userId);
-	return $rows;
+	return preparedQueryToAssocArray("select * from session where userId=?", 'i', $userId);
 }
 
 //function getAllSession()

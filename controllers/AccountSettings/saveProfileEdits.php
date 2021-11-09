@@ -11,6 +11,7 @@ function hasEmptyStr($strings)
 	return false;
 }
 
+$id = $_POST['id'];
 $username = $_POST['username'];
 $email = $_POST['email'];
 $name = $_POST['name'];
@@ -27,11 +28,12 @@ if (hasEmptyStr([$username, $email, $gender])) {
 
 require_once('../../repository/UserRepo.php');
 
-$status = saveUserEdits(array('username' => $username, 'email' => $email, 'name' => $name, 'gender' => $gender, 'role' => $role, 'dateOfBirth' => $dateOfBirth, 'address' => $address, 'phone' => $phone)); //usernameUnavailable=-1, //emailAlreadyExists=0, //userNotFound=-2 saveSuccessfully=1
+$status = saveUserEdits(array('id' => $id, 'username' => $username, 'email' => $email, 'name' => $name, 'gender' => $gender, 'role' => $role, 'dateOfBirth' => $dateOfBirth, 'address' => $address, 'phone' => $phone)); //usernameUnavailable=-1, //emailAlreadyExists=0, //noInfoChanged=-2 saveSuccessfully=1
 
 switch ($status) {
 	case -2:
-		echo "User not found";
+		//noInfoChanged
+		header('location: ../../views/dashboard');
 		return;
 		break;
 	case -1:
