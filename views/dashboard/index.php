@@ -2,40 +2,39 @@
 require_once('header.php');
 ?>
 <h1>Welcome <?= $user['name'] ?></h1>
-<img width="80" height="80" src="../../<?=$user['dp']?>" alt="pro-pic">
-<!-- <img width="60" height="60" src="../../assets/user/1635489908-ash-Screenshot 2021-10-11 at 14.28.55.png" alt="pro-pic"> -->
+<img width="80" height="80" src="../../<?= $user['profilePicture'] ?>" alt="pro-pic">
 <form action="../../controllers/AccountSettings/changeProPic.php" method="POST" enctype="multipart/form-data">
-    <input type="file" name="proPic">
-    <input type="submit" name="submitProPic" value="Change Picture">
+	<input type="file" name="proPic">
+	<input type="submit" name="submitProPic" value="Change Picture">
 </form>
 <hr>
 <br>
 <form action="#" method="POST">
-    <input type="submit" name="dashboard" value="Dashboard">
-    <input type="submit" name="editProfile" value="Edit Profile">
-    <input type="submit" name="changePassword" value="Change Password">
-    <input type="submit" name="manageSession" value="Manage Session">
-    <a href="../../controllers/logout.php">Logout</a>
+	<input type="submit" name="dashboard" value="Dashboard">
+	<input type="submit" name="editProfile" value="Edit Profile">
+	<input type="submit" name="changePassword" value="Change Password">
+	<input type="submit" name="manageSession" value="Manage Session">
+	<a href="../../controllers/logout.php">Logout</a>
 </form>
 
 <div><?php
-        if (isset($_POST['editProfile'])) {
-            include('accountSettings/editProfile.php');
-            return;
-        }
-        if (isset($_POST['changePassword'])) {
-            include('accountSettings/changePassword.php');
-            return;
-        }
-        if (isset($_POST['manageSession'])) {
-            include('accountSettings/manageSession.php');
-            return;
-        }
-        if (isset($_POST['dashboard'])) {
-            include('./roles/' . strtolower($user['role']) . '/dashboard.php');
-            return;
-        }
-        include('./roles/' . strtolower($user['role']) . '/dashboard.php');
-        ?></div>
+		if (isset($_POST['editProfile'])) {
+			include('accountSettings/editProfile.php');
+			return;
+		}
+		if (isset($_POST['changePassword'])) {
+			include('accountSettings/changePassword.php');
+			return;
+		}
+		if (isset($_POST['manageSession'])) {
+			include('accountSettings/manageSession.php');
+			return;
+		}
+		if (isset($_POST['dashboard'])) {
+			include('./roles/' . strtolower($user['role']) . '/dashboard.php');
+			return;
+		}
+		include('./roles/' . strtolower($user['role']) . '/dashboard.php');
+		?></div>
 <?php
 return;
