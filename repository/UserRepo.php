@@ -109,7 +109,8 @@ function getAllUser()
 //}
 function addUser($name, $username, $email, $role, $address, $phone, $gender, $dateOfBirth)
 {
-	return isPreparedStatementExecuted("insert into users (name, username, email, role, address, phone, gender, dateOfBirth) values(?,?,?,?,?,?,?,?>)", 'ssssssss', $name, $username, $email, $role, $address, $phone, $gender, $dateOfBirth);
+	$profilePicture = 'assets/default.png'; //default
+	return isPreparedStatementExecuted("insert into users (name, username, email, role, address, phone, gender, dateOfBirth, password, profilePicture) values(?,?,?,?,?,?,?,?,?,?)", 'ssssssssss', $name, $username, $email, $role, $address, $phone, $gender, $dateOfBirth, $username, $profilePicture);
 }
 
 function getUserById($id)
@@ -166,7 +167,7 @@ function getUserById($id)
 //}
 function deleteUser($id)
 {
-	return preparedQueryToAssocArray("delete from users where id=?", 'i', $id);
+	return isPreparedStatementExecuted("delete from users where id=?", 'i', $id);
 }
 
 
