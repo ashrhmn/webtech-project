@@ -31,11 +31,11 @@ if (isset($_POST['editUser'])) {
 
 	require_once('../../repository/UserRepo.php');
 
-	$status = saveUserEdits(array('id' => $id, 'username' => $username, 'email' => $email, 'name' => $name, 'role' => $role, 'gender' => $gender, 'dateOfBirth' => $dateOfBirth, 'address' => $address, 'phone' => $phone)); //usernameUnavailable=-1, //emailAlreadyExists=0, //userNotFound=-2 saveSuccessfully=1
+	$status = saveUserEdits(array('id' => $id, 'username' => $username, 'email' => $email, 'name' => $name, 'role' => $role, 'gender' => $gender, 'dateOfBirth' => $dateOfBirth, 'address' => $address, 'phone' => $phone)); //usernameUnavailable=-1, //emailAlreadyExists=0, //infoNotChanged=-2 saveSuccessfully=1
 
 	switch ($status) {
 		case -2:
-			echo "User not found";
+			header('location: ../../views/dashboard');
 			return;
 			break;
 		case -1:

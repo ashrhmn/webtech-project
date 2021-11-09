@@ -21,13 +21,15 @@ function saveUserEdits($user)
 		}
 	}
 
-	if (isPreparedStatementExecuted("update users set username=?, name=?, email=?, address=?, gender=?, role=?, dateOfBirth=?, phone=? where id=?", 'ssssssssi', $user['username'], $user['name'], $user['email'], $user['address'], $user['gender'], $user['role'], $user['dateOfBirth'], $user['phone'], $oldUser['id'])) {
-		//successfull
-		return 1;
-	} else {
-		//noInfoChanged
-		return -2;
-	}
+	return (isPreparedStatementExecuted("update users set username=?, name=?, email=?, address=?, gender=?, role=?, dateOfBirth=?, phone=? where id=?", 'ssssssssi', $user['username'], $user['name'], $user['email'], $user['address'], $user['gender'], $user['role'], $user['dateOfBirth'], $user['phone'], $oldUser['id'])) ? 1 : -2;
+
+	//	if (isPreparedStatementExecuted("update users set username=?, name=?, email=?, address=?, gender=?, role=?, dateOfBirth=?, phone=? where id=?", 'ssssssssi', $user['username'], $user['name'], $user['email'], $user['address'], $user['gender'], $user['role'], $user['dateOfBirth'], $user['phone'], $oldUser['id'])) {
+	//		//successfull
+	//		return 1;
+	//	} else {
+	//		//noInfoChanged
+	//		return -2;
+	//	}
 }
 
 //function saveUserEdits($user, $id)
