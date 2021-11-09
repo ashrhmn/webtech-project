@@ -40,6 +40,16 @@ function query($sql)
 		return null;
 	}
 }
+function queryToAssocArray($sql)
+{
+	try {
+		$con = getConnection();
+		return $con->query($sql)->fetch_all(MYSQLI_ASSOC);
+	} catch (Exception $error) {
+		alertMsg($error->getMessage());
+		return null;
+	}
+}
 
 
 function dataExistsOnQuery($sql)
