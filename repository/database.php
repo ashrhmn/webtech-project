@@ -8,11 +8,17 @@ function alertMsg($msg)
 
 function getConnection()
 {
-	$db_host = 'db';
+
+	//	$db_host = 'db';
+	//	// $db_port = 3307;
+	//	$db_name = 'dcms';
+	//	$db_user = 'dcms';
+	//	$db_password = 'ash';
+	$db_host = getenv('DB_HOST');
 	// $db_port = 3307;
-	$db_name = 'dcms';
-	$db_user = 'dcms';
-	$db_password = 'ash';
+	$db_name = getenv('DB_NAME');
+	$db_user = getenv('DB_USER');
+	$db_password = getenv('DB_PASSWORD');
 	$connection = new mysqli($db_host, $db_user, $db_password, $db_name);
 	if ($connection->connect_error) {
 		die('Connection Failed' . $connection->connect_error);

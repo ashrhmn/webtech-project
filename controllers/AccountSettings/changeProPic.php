@@ -11,10 +11,12 @@ $des = "../../../assets/" . $file;
 $src = $_FILES['proPic']['tmp_name'];
 
 if (move_uploaded_file($src, $des)) {
-	$oldFile = $user['profilePicture'];
+	$oldFile = '../../../assets/' . $user['profilePicture'];
 	$status = setProPic($file);
 	if ($status) {
-		unlink($oldFile);
+		if (file_exists($oldFile)) {
+			unlink($oldFile);
+		}
 		header('location: ../../views/dashboard');
 		return;
 	}
