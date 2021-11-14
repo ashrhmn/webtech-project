@@ -230,7 +230,7 @@ function signUpStatus($name, $username, $email, $password, $address, $phone, $ge
 		return -1;
 	}
 	$role = 'Patient'; //default
-	$profilePicture = 'assets/default.png'; //default
+	$profilePicture = 'default.png'; //default
 	$sql = "insert into users (username, email, name, password, role, address, phone, gender, dateOfBirth, profilePicture) values(?,?,?,?,?,?,?,?,?,?)";
 
 	if (isPreparedStatementExecuted($sql, 'ssssssssss', $username, $email, $name, $password, $role, $address, $phone, $gender, $dateOfBirth, $profilePicture)) {

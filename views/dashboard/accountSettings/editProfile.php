@@ -13,7 +13,7 @@ if (!$user) {
 
 ?>
 
-<form action="../../controllers/AccountSettings/saveProfileEdits.php" method="POST">
+<form action="/app/controllers/AccountSettings/saveProfileEdits.php" method="POST">
 	<table border="1">
 		<input type="text" name="id" hidden value="<?= $user['id'] ?>">
 		<input type="text" name="role" hidden value="<?= $user['role'] ?>">

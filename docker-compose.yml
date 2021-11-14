@@ -8,8 +8,8 @@ services:
       - "82:80"
     volumes:
       - ./data/apache/apache2.conf:/etc/apache2/apache2.conf
-      - ./:/var/www/html
-      - fs:/usr/data/fs
+      - ./:/var/www/html/app
+      - fs:/var/www/html/assets
     container_name: wt-apache
   file:
     image: filebrowser/filebrowser

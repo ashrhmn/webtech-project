@@ -1,35 +1,35 @@
 <?php
 if (count($equipments) == 0) {
-    echo 'No equipments found';
-    return;
+	echo 'No equipments found';
+	return;
 }
 
 ?>
 
 <table border="1">
-    <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Count</th>
-        <th>Action</th>
-    </tr>
-    <?php
+	<tr>
+		<th>ID</th>
+		<th>Name</th>
+		<th>Count</th>
+		<th>Action</th>
+	</tr>
+	<?php
 
-    for ($i = 0; $i < count($equipments); ++$i) {
-    ?>
+	for ($i = 0; $i < count($equipments); ++$i) {
+	?>
 
-        <tr>
-            <td><?= $equipments[$i]['id'] ?></td>
-            <td><?= $equipments[$i]['name'] ?></td>
-            <td><?= $equipments[$i]['count'] ?></td>
-            <td>
-                <a href="roles/admin/equipments/edit.php?id=<?= $equipments[$i]['id'] ?>">Edit</a>
-                <a href="<?= "/../../../../../controllers/admin/deleteEquipment.php?id=" . $equipments[$i]['id'] ?>">Delete</a>
-            </td>
-        </tr>
+		<tr>
+			<td><?= $equipments[$i]['id'] ?></td>
+			<td><?= $equipments[$i]['name'] ?></td>
+			<td><?= $equipments[$i]['count'] ?></td>
+			<td>
+				<a href="roles/admin/equipments/edit.php?id=<?= $equipments[$i]['id'] ?>">Edit</a>
+				<a href="<?= "/app/controllers/admin/deleteEquipment.php?id=" . $equipments[$i]['id'] ?>">Delete</a>
+			</td>
+		</tr>
 
-    <?php
-    }
+	<?php
+	}
 
-    ?>
+	?>
 </table>

@@ -111,7 +111,7 @@ function getAllUser()
 //}
 function addUser($name, $username, $email, $role, $address, $phone, $gender, $dateOfBirth)
 {
-	$profilePicture = 'assets/default.png'; //default
+	$profilePicture = 'default.png'; //default
 	return isPreparedStatementExecuted("insert into users (name, username, email, role, address, phone, gender, dateOfBirth, password, profilePicture) values(?,?,?,?,?,?,?,?,?,?)", 'ssssssssss', $name, $username, $email, $role, $address, $phone, $gender, $dateOfBirth, $username, $profilePicture);
 }
 
@@ -231,4 +231,3 @@ function setProPic($path)
 {
 	return isPreparedStatementExecuted("update users set profilePicture=? where id=?", 'si', $path, getLoggedInUserId());
 }
-
