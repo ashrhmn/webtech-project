@@ -1,6 +1,4 @@
 <?php
-
-require_once('files.php');
 require_once('database.php');
 
 $users_txt = getFsRootDir() . "users.txt";
