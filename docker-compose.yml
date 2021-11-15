@@ -2,20 +2,29 @@ version: "3"
 
 services:
   server:
-    build: ./data/apache
+    build:
+      context: ./data/apache
+      args:
+        - DB_HOST=${DB_HOST}
+        - DB_NAME=${DB_NAME}
+        - DB_PORT=${DB_PORT}
+        - DB_USER=${DB_USER}
+        - DB_PASSWORD=${DB_PASSWORD}
     image: ashrhmn/wt-php-apache
     ports:
-      - "82:80"
+      - ${APP_PORT}:80
     volumes:
       - ./data/apache/apache2.conf:/etc/apache2/apache2.conf
-      - ./:/var/www/html
-      - fs:/usr/data/fs
+      - ./:/var/www/html/app
+      - fs:/var/www/html/assets
     container_name: wt-apache
+    depends_on:
+      - db
   file:
     image: filebrowser/filebrowser
     container_name: wt-files
     ports:
-      - "81:80"
+      - ${FILE_BROWSER_PORT}:80
     volumes:
       - fs:/srv
   db:
@@ -23,10 +32,10 @@ services:
     build: ./data/mysql
     image: ashrhmn/wt-mysql
     environment:
-      MYSQL_ROOT_PASSWORD: mysql
-      MYSQL_USER: dcms
-      MYSQL_PASSWORD: ash
-      MYSQL_DATABASE: dcms
+      MYSQL_ROOT_PASSWORD: rootash
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: ${DB_NAME}
     # ports:
     #   - 3307:3306
     volumes:
@@ -39,7 +48,7 @@ services:
     links:
       - db:db
     ports:
-      - 3606:80
+      - ${PHPMYADMIN_PORT}:80
 volumes:
   fs:
     name: wt-fs
