@@ -1,9 +1,6 @@
 <?php
 require_once('database.php');
 
-$users_txt = getFsRootDir() . "users.txt";
-$avDoctors_txt = getFsRootDir() . "availableDoctors.txt";
-
 function getAvailableDoctorsId(){
 	$ids = array();
 	$idsAssoc = queryToAssocArray("select id from availableDoctors");

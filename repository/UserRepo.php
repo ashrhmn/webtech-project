@@ -2,9 +2,6 @@
 require_once('AuthRepo.php');
 require_once('database.php');
 
-$users_txt = getFsRootDir() . "users.txt";
-$session_txt = getFsRootDir() . "session.txt";
-
 function saveUserEdits($user)
 { //usernameUnavailable=-1, //emailAlreadyExists=0, //noInfoChanged=-2 saveSuccessfully=1
 	$oldUser = getUserById($user['id']);
