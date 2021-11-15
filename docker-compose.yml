@@ -12,7 +12,7 @@ services:
         - DB_PASSWORD=${DB_PASSWORD}
     image: ashrhmn/wt-php-apache
     ports:
-      - "82:80"
+      - ${APP_PORT}:80
     volumes:
       - ./data/apache/apache2.conf:/etc/apache2/apache2.conf
       - ./:/var/www/html/app
@@ -24,7 +24,7 @@ services:
     image: filebrowser/filebrowser
     container_name: wt-files
     ports:
-      - "81:80"
+      - ${FILE_BROWSER_PORT}:80
     volumes:
       - fs:/srv
   db:
@@ -48,7 +48,7 @@ services:
     links:
       - db:db
     ports:
-      - 3606:80
+      - ${PHPMYADMIN_PORT}:80
 volumes:
   fs:
     name: wt-fs
