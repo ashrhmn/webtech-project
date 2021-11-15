@@ -34,8 +34,8 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: rootash
       MYSQL_USER: ${DB_USER}
-      MYSQL_PASSWORD: ${DB_USER}
-      MYSQL_DATABASE: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: ${DB_NAME}
     # ports:
     #   - 3307:3306
     volumes:

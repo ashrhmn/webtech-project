@@ -3,7 +3,7 @@ require_once('header.php');
 ?>
 <h1>Welcome <?= $user['name'] ?></h1>
 <img width="80" height="80" src="/assets/<?= $user['profilePicture'] ?>" alt="pro-pic">
-<form action="../../controllers/AccountSettings/changeProPic.php" method="POST" enctype="multipart/form-data">
+<form action="/app/controllers/AccountSettings/changeProPic.php" method="POST" enctype="multipart/form-data">
 	<input type="file" name="proPic">
 	<input type="submit" name="submitProPic" value="Change Picture">
 </form>

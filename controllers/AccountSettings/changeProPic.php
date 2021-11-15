@@ -1,6 +1,4 @@
 <?php
-
-// require_once('../../repository/files.php');
 require_once('../../repository/AuthRepo.php');
 require_once('../../repository/UserRepo.php');
 

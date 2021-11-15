@@ -23,3 +23,10 @@ RUN echo "export DB_USER=${DB_USER}" >> /etc/apache2/envvars
 RUN echo "export DB_PASSWORD=${DB_PASSWORD}" >> /etc/apache2/envvars
 
 RUN docker-php-ext-install mysqli
+
+RUN touch /usr/local/etc/php/conf.d/php.ini
+RUN echo "upload_max_filesize = 1000M" >> /usr/local/etc/php/conf.d/php.ini
+RUN echo "post_max_size = 1000M;" >> /usr/local/etc/php/conf.d/php.ini
+RUN echo "display_errors = 1;" >> /usr/local/etc/php/conf.d/php.ini
+RUN echo "display_startup_errors = 1;" >> /usr/local/etc/php/conf.d/php.ini
+
