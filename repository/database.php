@@ -151,11 +151,11 @@ function getSingleRowIfExistsOnPreparedQuery($sql, $types, ...$args)
 //$time = (new DateTime('NOW'))->format('c');
 ////
 ////$st->bind_param('isss',$userId,$token,$agent,$time);
-$un = 'Male';
-$sql2 = "select * from users where gender=?";
+//$un = 'Male';
+//$sql2 = "select * from users where gender=?";
 //
 //$stm = execPreparedStatement($sql2,'s',$un);
-$res = dataExistsOnPreparedQuery($sql2, 's', $un);
+//$res = dataExistsOnPreparedQuery($sql2, 's', $un);
 //print_r($res);
 
 //echo 'Here';

@@ -1,36 +1,6 @@
 <?php
 
-//require_once('files.php');
 require_once('database.php');
-
-//$users_txt = getFsRootDir() . "users.txt";
-//$session_txt = getFsRootDir() . "session.txt";
-
-//function isUserLoggedIn()
-//{
-//    global $session_txt;
-//    if (isset($_COOKIE['token'])) {
-//        $token = $_COOKIE['token'];
-//
-//        if ($token != "") {
-//
-//            $sessionFile = fopen($session_txt, 'r');
-//
-//            while (!feof($sessionFile)) {
-//                $data = fgets($sessionFile);
-//                if ($data != "") {
-//                    $session = explode('|', $data);
-//                    if (trim($session[1]) == trim($token)) {
-//                        return true;
-//                    }
-//                }
-//            }
-//        }
-//        setcookie('token', null, -1, '/');
-//        return false;
-//    }
-//    return false;
-//}
 
 function isUserLoggedIn()
 {
@@ -52,28 +22,6 @@ function isUserLoggedIn()
 	return false;
 }
 
-//function getLoggedInUserId()
-//{
-//    global $session_txt;
-//    if (isset($_COOKIE['token'])) {
-//        $token = $_COOKIE['token'];
-//        if ($token != "") {
-//            $sessionFile = fopen($session_txt, 'r');
-//            while (!feof($sessionFile)) {
-//                $data = fgets($sessionFile);
-//                if ($data != "") {
-//                    $session = explode('|', $data);
-//                    if (trim($session[1]) == trim($token)) {
-//                        return $session[0];
-//                    }
-//                }
-//            }
-//        }
-//        setcookie('token', null, -1, '/');
-//        return null;
-//    }
-//    return null;
-//}
 function getLoggedInUserId()
 {
 	if (!isset($_COOKIE['token'])) {
@@ -85,35 +33,9 @@ function getLoggedInUserId()
 		if ($row) {
 			return $row['userId'];
 		}
-		//	$result = query('select userId from session where token=' . $token);
-		//	if ($result->num_rows > 0) {
-		//		if ($row = $result->fetch_assoc()) {
-		//			return $row['userId'];
-		//		}
-		//	}
 	}
 	return null;
 }
-
-//function getLoggedInUser()
-//{
-//    global $users_txt;
-//    $userId = getLoggedInUserId();
-//    if ($userId) {
-//        $usersFile = fopen($users_txt, 'r');
-//        while (!feof($usersFile)) {
-//            $data = fgets($usersFile);
-//            if ($data != "") {
-//                $user = explode('|', $data);
-//                if (trim($user[0]) == $userId) {
-//                    return array('id' => $user[0], 'username' => $user[1], 'email' => $user[2], 'name' => $user[3], 'role' => $user[4], 'address' => $user[5], 'gender' => $user[6], 'dateOfBirth' => $user[7], 'phone' => $user[8],'dp' => $user[10]);
-//                }
-//            }
-//        }
-//    }
-//    setcookie('token', null, -1, '/');
-//    return null;
-//}
 
 function getLoggedInUser()
 {
@@ -125,45 +47,9 @@ function getLoggedInUser()
 	if (count($rows) > 0) {
 		return $rows[0];
 	}
-	//	$result = query("select * from users where id=" . $userId);
-	//	if ($result->num_rows > 0) {
-	//		if ($row = $result->fetch_assoc()) {
-	//			return $row;
-	//		}
-	//	}
 	return null;
 }
 
-//function credsStatus($usernameOrEmail, $password) //-> 1=loginSucc, 0=wrongPassword, -1=userNotFound, 2=sesionError
-//{
-//    global $users_txt;
-//    global $session_txt;
-//    $usersFile = fopen($users_txt, 'r');
-//    while (!feof($usersFile)) {
-//        $data = fgets($usersFile);
-//        if ($data != "") {
-//            $user = explode('|', $data);
-//            if (trim($user[1]) == $usernameOrEmail) {
-//                if (trim($user[9]) == $password) {
-//                    $sessionFile = fopen($session_txt, 'a');
-//                    $token = bin2hex(random_bytes(37));
-//                    if (!fwrite($sessionFile, $user[0] . '|' . $token . "|" . $_SERVER['HTTP_USER_AGENT'] . "\n")) {
-//                        //sessionError
-//                        return 2;
-//                    }
-//                    //loginSucc
-//                    setcookie('token', $token, time() + (365 * 24 * 3600), '/');
-//                    return 1;
-//                } else {
-//                    //wrongPass
-//                    return 0;
-//                }
-//            }
-//        }
-//    }
-//    //userNotFound
-//    return -1;
-//}
 function credsStatus($usernameOrEmail, $password) //-> 1=loginSucc, 0=wrongPassword, -1=userNotFound, -2=sesionError
 {
 	$rows = preparedQueryToAssocArray("select * from users where username=? or email=?", 'ss', $usernameOrEmail, $usernameOrEmail);
@@ -188,20 +74,6 @@ function credsStatus($usernameOrEmail, $password) //-> 1=loginSucc, 0=wrongPassw
 	//userNotFound
 	return -1;
 }
-//function isSignUpSuccessful($name, $username, $email, $password, $address, $phone, $gender, $dateOfBirth)
-//{
-//    global $users_txt;
-//    $role = "Patient"; //default
-//    $dp = "assets/default.png"; //default
-//    $id = time() . '-' . $username; //randomGen
-//    $user = $id . '|' . $username . '|' . $email . '|' . $name . '|' . $role . '|' . $address . '|' . $gender . '|' . $dateOfBirth . '|' . $phone . '|' . $password . '|' . $dp . "\n";
-//    $users_file = fopen($users_txt, 'a');
-//    if (!fwrite($users_file, $user)) {
-//        return false;
-//    }
-//    return true;
-//}
-
 
 function isAvailable($key, $value)
 {
@@ -240,32 +112,6 @@ function signUpStatus($name, $username, $email, $password, $address, $phone, $ge
 	return 0;
 }
 
-//function destroyLoginSession($token)
-//{
-//	global $session_txt;
-//	$flag = false;
-//	$sessionFile = fopen($session_txt, 'r');
-//	$users = array();
-//	while (!feof($sessionFile)) {
-//		$data = fgets($sessionFile);
-//		if ($data != "") {
-//			$userToken = explode('|', $data);
-//			if (trim($userToken[1]) != $token) {
-//				array_push($users, $data);
-//			} else {
-//				$flag = true;
-//			}
-//		}
-//	}
-//	fclose($sessionFile);
-//	$sessionFile = fopen($session_txt, 'w');
-//
-//	for ($i = 0; $i < count($users); ++$i) {
-//		fwrite($sessionFile, $users[$i]);
-//	}
-//
-//	return $flag;
-//}
 function destroyLoginSession($token)
 {
 	if (isPreparedStatementExecuted("delete from session where token=?", 's', $token)) {
