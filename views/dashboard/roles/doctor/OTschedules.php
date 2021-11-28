@@ -2,20 +2,19 @@
 
 require_once(__DIR__ . '../../../../../repository/UserRepo.php');
 
-$allUsers = getAllPatients();
+$allUsers = OTpatients();
 ?>
 <table border="1">
     <tr>
-        <th colspan="10" align="center">Patient List</th>
+        <th colspan="10" align="center">OT Patients List</th>
     </tr>
     <tr>
         <th>ID</th>
         <th>Username</th>
-        <th>Email</th>
         <th>Name</th>
-        <th>Address</th>
+        <th>Emergency</th>
         <th>Gender</th>
-        <th>Date Of Birth</th>
+        <th>Operation Date</th>
         <th>Phone</th>
         <th>Action</th>
     </tr>
@@ -26,11 +25,10 @@ $allUsers = getAllPatients();
         <tr>
             <td><?= $allUsers[$i]['id'] ?></td>
             <td><?= $allUsers[$i]['username'] ?></td>
-            <td><?= $allUsers[$i]['email'] ?></td>
             <td><?= $allUsers[$i]['name'] ?></td>
-            <td><?= $allUsers[$i]['address'] ?></td>
+            <td><?= $allUsers[$i]['emergency'] ?></td>
             <td><?= $allUsers[$i]['gender'] ?></td>
-            <td><?= $allUsers[$i]['dateOfBirth'] ?></td>
+            <td><?= $allUsers[$i]['OPdate'] ?></td>
             <td><?= $allUsers[$i]['phone'] ?></td>
             <td>
                 <a href="<?= "/app/views/dashboard/roles/admin/manageUsers/editUser.php?id=" . $allUsers[$i]['id'] ?>">Edit</a> |

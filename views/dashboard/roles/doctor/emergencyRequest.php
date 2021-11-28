@@ -2,7 +2,7 @@
 
 require_once(__DIR__ . '../../../../../repository/UserRepo.php');
 
-$allUsers = getAllPatients();
+$allUsers = emergencyPatients();
 ?>
 <table border="1">
     <tr>
@@ -10,10 +10,8 @@ $allUsers = getAllPatients();
     </tr>
     <tr>
         <th>ID</th>
-        <th>Username</th>
-        <th>Email</th>
         <th>Name</th>
-        <th>Address</th>
+        <th>Emergency</th>
         <th>Gender</th>
         <th>Date Of Birth</th>
         <th>Phone</th>
@@ -25,16 +23,14 @@ $allUsers = getAllPatients();
     ?>
         <tr>
             <td><?= $allUsers[$i]['id'] ?></td>
-            <td><?= $allUsers[$i]['username'] ?></td>
-            <td><?= $allUsers[$i]['email'] ?></td>
             <td><?= $allUsers[$i]['name'] ?></td>
-            <td><?= $allUsers[$i]['address'] ?></td>
+            <td><?= $allUsers[$i]['emergency'] ?></td>
             <td><?= $allUsers[$i]['gender'] ?></td>
             <td><?= $allUsers[$i]['dateOfBirth'] ?></td>
             <td><?= $allUsers[$i]['phone'] ?></td>
             <td>
-                <a href="<?= "/app/views/dashboard/roles/admin/manageUsers/editUser.php?id=" . $allUsers[$i]['id'] ?>">Edit</a> |
-                <a href="<?= "/app/controllers/admin/deleteUser.php?id=" . $allUsers[$i]['id'] ?>">Delete</a>
+                <a href="<?= "/app/views/dashboard/roles/admin/manageUsers/approveUser.php?id=" . $allUsers[$i]['id'] ?>">Approve</a> |
+                <a href="<?= "/app/views/dashboard/roles/admin/manageUsers/declineUser.php?id=" . $allUsers[$i]['id'] ?>">Decline</a>
             </td>
         </tr>
     <?php
