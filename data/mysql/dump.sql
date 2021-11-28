@@ -44,6 +44,21 @@ INSERT INTO `availableDoctors` (`id`) VALUES
 
 -- --------------------------------------------------------
 
+CREATE TABLE `availablePatients` (
+  `id` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `availablePatients`
+--
+
+INSERT INTO `availablePatients` (`id`) VALUES
+(9),
+(10),
+(11),
+(12),
+(13);
+
 --
 -- Table structure for table `equipments`
 --
@@ -115,6 +130,66 @@ INSERT INTO `users` (`id`, `name`, `username`, `email`, `password`, `role`, `add
 (12, 'DOctor 1', 'doc1', 'doc1@d.d', 'doc1', 'Doctor', 'jsdhlsdjvhb', 'bljinbl;', 'Male', '2001-01-01', 'default.png'),
 (13, 'jhdsblvjkhbd', 'doc2', 'doc2@d.d', 'doc2', 'Doctor', 'janslkjnas', 'jnkladjsnlvckj', 'Male', '2001-01-01', 'default.png');
 
+
+--
+-- Table structure for table `emergencyRequests`
+--
+
+CREATE TABLE `emergencyRequests` (
+  `id` int NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `username` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `emergency` text,
+  `phone` varchar(20) DEFAULT NULL,
+  `gender` enum('Male','Female','Other','') DEFAULT NULL,
+  `dateOfBirth` date NOT NULL,
+  `profilePicture` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT 'default.png'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `emergencyRequests`
+--
+
+INSERT INTO `emergencyRequests` (`id`, `name`, `username`, `email`, `emergency`, `phone`, `gender`, `dateOfBirth`, `profilePicture`) VALUES
+(6, 'Ashik Rahman', 'ash', 'ash@ash.com', 'accident', '+8801746553758', 'Male', '1999-01-25', 'default.png'),
+(9, 'nil rahman', 'nila', 'nila@nil.com', 'head injury', 'ascascasc', 'Male', '1999-11-09', 'default.png'),
+(10, 'asha', 'asha', 'asha@aa.aa', 'bleeding', '2342342344444', 'Male', '2021-11-02', 'default.png'),
+(11, 'Ashik R', 'aaa', 'aaa@a.a', 'delivery', 'aaaaaaaaaaa', 'Male', '2021-11-15', 'default.png'),
+(12, 'DOctor 1', 'doc1', 'doc1@d.d', 'leg injury', 'bljinbl;', 'Male', '2001-01-01', 'default.png'),
+(13, 'jhdsblvjkhbd', 'doc2', 'doc2@d.d', 'accident', 'jnkladjsnlvckj', 'Male', '2001-01-01', 'default.png');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Table structure for table `OTschedules`
+--
+
+CREATE TABLE `OTschedules` (
+  `id` int NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `username` varchar(255) NOT NULL,
+  `emergency` text,
+  `phone` varchar(20) DEFAULT NULL,
+  `gender` enum('Male','Female','Other','') DEFAULT NULL,
+  `OPdate` date NOT NULL,
+  `profilePicture` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT 'default.png'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `OTschedules`
+--
+
+INSERT INTO `OTschedules` (`id`, `name`, `username`, `emergency`, `phone`, `gender`, `OPdate`, `profilePicture`) VALUES
+(6, 'Ashik Rahman', 'ash', 'accident', '+8801746553758', 'Male', '2021-01-25', 'default.png'),
+(9, 'nil rahman', 'nila', 'head injury', 'ascascasc', 'Male', '2022-11-09', 'default.png'),
+(10, 'asha', 'asha', 'bleeding', '2342342344444', 'Male', '2021-11-02', 'default.png'),
+(11, 'Ashik R', 'aaa', 'delivery', 'aaaaaaaaaaa', 'Male', '2021-11-15', 'default.png'),
+(12, 'DOctor 1', 'doc1', 'leg injury', 'bljinbl;', 'Male', '2022-01-01', 'default.png'),
+(13, 'jhdsblvjkhbd', 'doc2', 'accident', 'jnkladjsnlvckj', 'Male', '2022-01-01', 'default.png');
+
 --
 -- Indexes for dumped tables
 --
@@ -123,6 +198,9 @@ INSERT INTO `users` (`id`, `name`, `username`, `email`, `password`, `role`, `add
 -- Indexes for table `availableDoctors`
 --
 ALTER TABLE `availableDoctors`
+  ADD UNIQUE KEY `nvm` (`id`);
+
+ALTER TABLE `availablePatients`
   ADD UNIQUE KEY `nvm` (`id`);
 
 --
