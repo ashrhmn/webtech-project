@@ -1,2 +1,2 @@
 FROM mysql
-COPY dump.sql /docker-entrypoint-initdb.d/
+COPY dcms.sql /docker-entrypoint-initdb.d/
