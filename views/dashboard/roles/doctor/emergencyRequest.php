@@ -4,7 +4,7 @@ require_once(__DIR__ . '../../../../../repository/UserRepo.php');
 
 $allUsers = emergencyPatients();
 ?>
-<table border="1">
+<table border="1" align="center">
     <tr>
         <th colspan="10" align="center">Patient List</th>
     </tr>
@@ -16,6 +16,12 @@ $allUsers = emergencyPatients();
         <th>Date Of Birth</th>
         <th>Phone</th>
         <th>Action</th>
+        <style>
+            th {
+                background-color: #04AA6D;
+                color: white;
+            }
+        </style>
     </tr>
     <?php
 
@@ -32,6 +38,11 @@ $allUsers = emergencyPatients();
                 <a href="<?= "/app/views/dashboard/roles/admin/manageUsers/approveUser.php?id=" . $allUsers[$i]['id'] ?>">Approve</a> |
                 <a href="<?= "/app/views/dashboard/roles/admin/manageUsers/declineUser.php?id=" . $allUsers[$i]['id'] ?>">Decline</a>
             </td>
+            <style>
+                a {
+                    text-decoration: none;
+                }
+            </style>
         </tr>
     <?php
     }
