@@ -12,6 +12,7 @@ require('secureRoute.php');
 <form action="#" method="POST">
     <a href="?tab=appointment">Appointment</a>
     <a href="?tab=createbill">Create Bill</a>
+    <a href="?tab=billList">Bill List</a>
 </form>
 
 <hr>

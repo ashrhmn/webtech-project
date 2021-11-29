@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: db
--- Generation Time: Nov 28, 2021 at 10:46 PM
--- Server version: 8.0.26
--- PHP Version: 7.4.25
+-- Generation Time: Nov 29, 2021 at 08:12 AM
+-- Server version: 8.0.27
+-- PHP Version: 7.4.26
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -62,6 +62,28 @@ INSERT INTO `availablePatients` (`id`) VALUES
 (11),
 (12),
 (13);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `bills`
+--
+
+CREATE TABLE `bills` (
+  `id` int NOT NULL,
+  `testName` varchar(255) NOT NULL,
+  `testPrice` double(255,2) NOT NULL,
+  `numOfTests` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `bills`
+--
+
+INSERT INTO `bills` (`id`, `testName`, `testPrice`, `numOfTests`) VALUES
+(1, 'test1', 220.00, 2),
+(2, 'test2', 400.00, 4),
+(3, 'test3', 200.00, 3);
 
 -- --------------------------------------------------------
 
@@ -161,7 +183,8 @@ CREATE TABLE `session` (
 
 INSERT INTO `session` (`id`, `userId`, `token`, `agent`, `time`) VALUES
 (3, 6, 'c4df780fba2fbc109b7325c42018045ccbe61a140e294ad9ffd44b5f6a26eb1cfd96f65d9d', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:94.0) Gecko/20100101 Firefox/94.0', '2021-11-09 21:08:12'),
-(5, 12, '246291a86a83133494a67f1b8886232a905d4912e396bb1f6dcfc0e0dd625fe0a2f23598aa', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:94.0) Gecko/20100101 Firefox/94.0', '2021-11-15 21:51:03');
+(5, 12, '246291a86a83133494a67f1b8886232a905d4912e396bb1f6dcfc0e0dd625fe0a2f23598aa', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:94.0) Gecko/20100101 Firefox/94.0', '2021-11-15 21:51:03'),
+(8, 13, 'f366aee83c118d977bf39aeb25966dd46d297f461f0151086dcf84a763eb490f3624566a86', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:94.0) Gecko/20100101 Firefox/94.0', '2021-11-29 08:02:02');
 
 -- --------------------------------------------------------
 
@@ -193,7 +216,7 @@ INSERT INTO `users` (`id`, `name`, `username`, `email`, `password`, `role`, `add
 (10, 'asha', 'asha', 'asha@aa.aa', 'asha', 'Doctor', 'Shahzadpur, Sirajgonj', '2342342344444', 'Male', '2021-11-02', 'default.png'),
 (11, 'Ashik R', 'aaa', 'aaa@a.a', 'aaa', 'Doctor', 'kdisnhkfjasdhnklja', 'aaaaaaaaaaa', 'Male', '2021-11-15', 'default.png'),
 (12, 'DOctor 1', 'doc1', 'doc1@d.d', 'doc1', 'Doctor', 'jsdhlsdjvhb', 'bljinbl;', 'Male', '2001-01-01', 'default.png'),
-(13, 'jhdsblvjkhbd', 'doc2', 'doc2@d.d', 'doc2', 'Doctor', 'janslkjnas', 'jnkladjsnlvckj', 'Male', '2001-01-01', 'default.png');
+(13, 'jhdsblvjkhbd', 'doc2', 'doc2@d.d', 'doc2', 'Employee', 'janslkjnas', 'jnkladjsnlvckj', 'Male', '2001-01-01', 'default.png');
 
 --
 -- Indexes for dumped tables
@@ -210,6 +233,12 @@ ALTER TABLE `availableDoctors`
 --
 ALTER TABLE `availablePatients`
   ADD UNIQUE KEY `nvm` (`id`);
+
+--
+-- Indexes for table `bills`
+--
+ALTER TABLE `bills`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `equipments`
@@ -237,6 +266,12 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `bills`
+--
+ALTER TABLE `bills`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `equipments`
 --
 ALTER TABLE `equipments`
@@ -246,7 +281,7 @@ ALTER TABLE `equipments`
 -- AUTO_INCREMENT for table `session`
 --
 ALTER TABLE `session`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `users`
