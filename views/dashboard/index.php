@@ -2,7 +2,7 @@
 require_once('header.php');
 ?>
 
-<script src="../../scripts/jquery.js"></script>
+<script src="/app/scripts/jquery.js"></script>
 
 <h1>Welcome <?= $user['name'] ?></h1>
 <img width="80" height="80" src="/assets/<?= $user['profilePicture'] ?>" alt="pro-pic">
