@@ -1,6 +1,9 @@
 <?php
 require_once('header.php');
 ?>
+
+<script src="../../scripts/jquery.js"></script>
+
 <h1>Welcome <?= $user['name'] ?></h1>
 <img width="80" height="80" src="/assets/<?= $user['profilePicture'] ?>" alt="pro-pic">
 <form action="/app/controllers/AccountSettings/changeProPic.php" method="POST" enctype="multipart/form-data">

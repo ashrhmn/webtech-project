@@ -5,11 +5,11 @@ echo 'Add user';
 	<table border="1">
 		<tr>
 			<td>Username</td>
-			<td><input type="text" name="username"></td>
+			<td><input type="text" name="username"><text></text></td>
 		</tr>
 		<tr>
 			<td>Email</td>
-			<td><input type="email" name="email"></td>
+			<td><input type="email" name="email"><text></text></td>
 		</tr>
 		<tr>
 			<td>Full Name</td>
@@ -51,3 +51,54 @@ echo 'Add user';
 		</tr>
 	</table>
 </form>
+
+<button id="test">test</button>
+
+<script>
+	function enableSubmission() {
+		$('input[name="addNewUser"]').prop('disabled', false);
+	}
+
+	function disableSubmission() {
+		$('input[name="addNewUser"]').prop('disabled', true);
+	}
+	const checkUsernameAndEmail = () => {
+		let usernameEl = $('input[name="username"]');
+		let emailEl = $('input[name="email"]');
+
+		$.ajax({
+			url: '/app/controllers/admin/addUserValidate.php',
+			type: 'POST',
+			data: {
+				username: usernameEl.val(),
+				email: emailEl.val()
+			},
+
+			success: function(response) {
+				let res = JSON.parse(response);
+				$('input[name="username"]').next().text(res.usernameMsg);
+				$('input[name="email"]').next().text(res.emailMsg);
+
+				if (res.usernameMsg == "" && res.emailMsg == "") {
+					$('input[name="username"]').css('border', '1px solid green');
+					$('input[name="email"]').css('border', '1px solid green');
+					enableSubmission()
+				} else {
+					disableSubmission()
+					if (res.usernameMsg != "") {
+						$('input[name="username"]').css('border', '1px solid red');
+					}
+					if (res.emailMsg != "") {
+						$('input[name="email"]').css('border', '1px solid red');
+					}
+				}
+			},
+			error: function(error) {
+				console.log(error);
+			}
+		});
+	}
+
+	$('input[name="username"]').on('keyup', checkUsernameAndEmail);
+	$('input[name="email"]').on('keyup', checkUsernameAndEmail);
+</script>
