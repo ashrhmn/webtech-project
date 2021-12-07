@@ -19,6 +19,7 @@ if (!$equipment) {
 }
 
 ?>
+<script src="/app/scripts/jquery.js"></script>
 
 <form action="/app/controllers/admin/editEquipment.php" method="POST">
 	<table>
@@ -35,7 +36,19 @@ if (!$equipment) {
 			<td><input type="number" step="1" name="count" value="<?= $equipment['count'] + 0 ?>"></td>
 		</tr>
 		<tr>
-			<td align="center" colspan="2"><input type="submit" name="saveEdits" value="Save Edit"></td>
+			<td align="center" colspan="2"><input type="submit" name="saveEdits" value="Save Edit" disabled></td>
 		</tr>
 	</table>
 </form>
+
+<script>
+	const validateCount = () => {
+		if (isNaN($('input[name="count"]').val()) || $('input[name="count"]').val() =="") {
+			$('input[name="saveEdits"]').attr('disabled', true);
+			return;
+		}
+		$('input[name="saveEdits"]').attr('disabled', false);
+	}
+
+	$('input[name="count"]').on('keyup', validateCount);
+</script>

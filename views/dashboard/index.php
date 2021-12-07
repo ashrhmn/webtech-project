@@ -8,8 +8,10 @@ require_once('header.php');
 <img width="80" height="80" src="/assets/<?= $user['profilePicture'] ?>" alt="pro-pic">
 <form action="/app/controllers/AccountSettings/changeProPic.php" method="POST" enctype="multipart/form-data">
 	<input type="file" name="proPic">
+	<text id="err"></text>
+	<br>
 	<input type="submit" name="submitProPic" value="Change Picture">
-	<text></text>
+	<input type="reset" name="clearProPic" value="Clear">
 </form>
 <hr>
 <br>
@@ -45,21 +47,23 @@ require_once('header.php');
 	const validate = () => {
 		if ($('input[name="proPic"]').get(0).files.length == 0) {
 			$('input[name="submitProPic"]').attr('disabled', true);
+			$('#err').text('');
 		} else {
-			console.log($('input[name="proPic"]').get(0).files[0].name.split('.')[1]);
 			const fileExt = $('input[name="proPic"]').get(0).files[0].name.split('.')[1].toString().toLowerCase();
 			if (!["jpg", "jpeg", "png"].includes(fileExt)) {
-				// alert('Invalid file type');
 				$('input[name="submitProPic"]').attr('disabled', true);
-				$('input[name="submitProPic"]').next().text('Invalid file type');
+				$('#err').text('Invalid file type');
+
 				return;
 			}
 			$('input[name="submitProPic"]').attr('disabled', false);
-			$('input[name="submitProPic"]').next().text('');
+			$('#err').text('');
+
 		}
 	}
 	validate()
 	$("input[name='proPic']").change(validate);
+	$("input[name='clearProPic']").click(()=>$('#err').text(''))
 </script>
 <?php
 return;
