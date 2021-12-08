@@ -4,8 +4,14 @@ require_once('../../repository/AuthRepo.php');
 
 // $username = "ash";
 // $email = "nila@nil.com";
-$username = $_POST['username'];
-$email = $_POST['email'];
+
+$data = json_decode(file_get_contents('php://input'));
+
+$username = $data->username;
+$email = $data->email;
+
+// $username = $_POST['username'];
+// $email = $_POST['email'];
 
 $user = getLoggedInUser();
 
