@@ -151,20 +151,22 @@ require_once('header.php');
 
 	#imgHandler {
 		display: flex;
-		justify-content: space-around;
+		justify-content: space-between;
 	}
 
 	.btn {
 		height: 30px;
-		width: 100px;
+		width: 80px;
 		border: 0px;
 		border-radius: 30px;
+		margin: 5px;
 	}
 
 	.btn-blue {
 		background-color: rgba(11, 166, 255, 1);
 		color: white;
 	}
+
 	.btn-blue:hover {
 		background-color: rgba(76, 139, 245, 1);
 		color: white;
@@ -179,16 +181,16 @@ require_once('header.php');
 			</div>
 			<img id="profileImage" src="/assets/<?= $user['profilePicture'] ?>" alt="pro-pic">
 		</div>
-		<div id="imgHandler">
-			<form action="/app/controllers/AccountSettings/changeProPic.php" method="POST" enctype="multipart/form-data">
-				<input type="file" name="proPic" hidden>
-				<text id="err"></text>
-				<br>
+		<form action="/app/controllers/AccountSettings/changeProPic.php" method="POST" enctype="multipart/form-data">
+			<input type="file" name="proPic" hidden>
+			<text id="err"></text>
+			<br>
+			<div id="imgHandler">
 				<input class="btn btn-blue" type="submit" name="submitProPic" value="Update" hidden>
-				<input type="reset" name="clearProPic" value="Clear" hidden>
 				<button class="btn" id="discard" hidden>Discard</button>
-			</form>
-		</div>
+			</div>
+			<input type="reset" name="clearProPic" value="Clear" hidden>
+		</form>
 
 
 		<form action="#" method="POST">
