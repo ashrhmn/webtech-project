@@ -79,6 +79,7 @@ require_once('header.php');
 		width: 250px;
 		background-color: #0a47fb;
 		align-items: center;
+		line-height: 0.1;
 	}
 
 	.sidebar>form>a>div {
@@ -92,7 +93,6 @@ require_once('header.php');
 		color: white;
 		text-decoration: none;
 		font-size: 20px;
-
 	}
 
 	.sidebar>form>a>div>img {
@@ -144,15 +144,14 @@ require_once('header.php');
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		/* translate: 40px 100px; */
 		transform: translate(40px, 100px);
 		cursor: pointer;
 	}
 
-	#imgHandler {
+	/* #imgHandler {
 		display: flex;
 		justify-content: space-between;
-	}
+	} */
 
 	.btn {
 		height: 30px;
@@ -170,6 +169,22 @@ require_once('header.php');
 	.btn-blue:hover {
 		background-color: rgba(76, 139, 245, 1);
 		color: white;
+	}
+
+	#name{
+		color: white;
+		font-size: 28px;
+		font-weight: 900;
+		line-height: 1;
+		text-align: center;
+		padding: 0 2px;
+	}
+
+	#role{
+		color: white;
+		font-size: 20px;
+		font-weight: 500;
+		line-height: 0.1;
 	}
 </style>
 
@@ -192,6 +207,8 @@ require_once('header.php');
 			<input type="reset" name="clearProPic" value="Clear" hidden>
 		</form>
 
+		<p id="name"><?= $user['name'] ?></p>
+		<p id="role">Role : <?= $user['role'] ?></p>
 
 		<form action="#" method="POST">
 			<a href="?section=main">
@@ -229,9 +246,6 @@ require_once('header.php');
 </div>
 
 <div class="content">
-	<h1>Welcome <?= $user['name'] ?></h1>
-	<hr>
-	<br>
 
 	<div><?php
 			if (!isset($_GET['section'])) {
