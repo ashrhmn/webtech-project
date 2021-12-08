@@ -1,26 +1,52 @@
 <?php
 
-echo 'Admin Dashboard';
-
 include_once('secureRoute.php');
 
-// include('manageUsers/index.php');
 
 ?>
+
+<style>
+    nav {
+        display: flex;
+        align-items: center;
+        height: 100px;
+        /* background-color: #1727fa; */
+        position: absolute;
+        top: 0;
+        left: 250;
+        width: 100%;
+    }
+
+    nav>a {
+        text-decoration: none;
+        background-color: #2478f1;
+        padding: 2px 5px;
+        margin: 0 10px;
+        color: white;
+        border-radius: 5px;
+    }
+    #dashboardView{
+        margin-top: 100px;
+    }
+</style>
 <br>
 <form action="#" method="POST">
-    <a href="?tab=manageUsers">Users</a>
-    <a href="?tab=equipments">Equipments</a>
-    <a href="?tab=orders">Orders</a>
-    <a href="?tab=availableDoctors">Available Doctors</a>
+    <nav>
+        <a href="?tab=manageUsers">Users</a>
+        <a href="?tab=equipments">Equipments</a>
+        <a href="?tab=orders">Orders</a>
+        <a href="?tab=availableDoctors">Available Doctors</a>
+    </nav>
 </form>
 
-<hr>
+<div id="dashboardView">
+    <hr>
+    <?php
 
-<?php
-
-if (isset($_GET['tab'])) {
-    include($_GET['tab'].'/index.php');
-    return;
-}
-include('manageUsers/index.php');
+    if (isset($_GET['tab'])) {
+        include($_GET['tab'] . '/index.php');
+        return;
+    }
+    include('manageUsers/index.php');
+    ?>
+</div>

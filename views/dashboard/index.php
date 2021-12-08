@@ -67,6 +67,7 @@ require_once('header.php');
 <style>
 	body {
 		font-family: 'Poppins', sans-serif;
+		/* background-image: linear-gradient(to right, #0a47fb, #054efc, #0454fd, #065afe, #0c60ff, #2b62ff, #3c63ff, #4965ff, #5f63ff, #7260ff, #835dff, #9259ff); */
 	}
 
 	.sidebar {
@@ -77,33 +78,19 @@ require_once('header.php');
 		top: 0;
 		height: 100%;
 		width: 250px;
-		background-color: #0a47fb;
+		/* background-color: #0a47fb; */
+		background-color: #fff;
 		align-items: center;
-		line-height: 0.1;
+		/* line-height: 0.1; */
 	}
 
-	.sidebar>form>a>div {
-		display: flex;
-		width: 240px;
-		align-items: center;
-
-	}
-
-	.sidebar>form>a {
-		color: white;
-		text-decoration: none;
-		font-size: 20px;
-	}
-
-	.sidebar>form>a>div>img {
+	.sidenavicon {
 		height: 25px;
 		width: 25px;
-		filter: invert(100%);
+		/* filter: invert(40%); */
+		filter: brightness(0.4) invert(.1) sepia(.3) hue-rotate(100deg) saturate(300%);
 	}
 
-	.sidebar>form>a>div>* {
-		padding: 15px;
-	}
 
 	#profileImage {
 		/* profile picture */
@@ -111,20 +98,19 @@ require_once('header.php');
 		height: 100px;
 		width: 100px;
 		object-fit: cover;
-
-		border-radius: 50px;
-		border: 2px;
-		border-color: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 38%, rgba(0, 212, 255, 1) 100%);
-		border-style: solid;
+		border-radius: 50%;
 	}
 
-	#profile-container {
-		margin-top: 20px;
+
+	#proPic-border {
+		border: 2px solid;
+		border-color: #2747e9;
+		border-radius: 50%;
 	}
 
 	.content {
 		margin-left: 250;
-		padding: 10px;
+		/* padding: 10px; */
 	}
 
 	#editImg {
@@ -171,20 +157,52 @@ require_once('header.php');
 		color: white;
 	}
 
-	#name{
-		color: white;
+	#name {
+		/* color: white; */
 		font-size: 28px;
 		font-weight: 900;
 		line-height: 1;
 		text-align: center;
 		padding: 0 2px;
+		/* background-color: #2747e9; */
 	}
 
-	#role{
-		color: white;
+	#role {
+		/* color: white; */
 		font-size: 20px;
 		font-weight: 500;
-		line-height: 0.1;
+		/* background-color: #2b9ce6; */
+	}
+
+	.sidenav {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.sidenav>a {
+		/* background-color: #2747e9; */
+		padding: 10px;
+		display: flex;
+		align-items: center;
+		font-size: 20px;
+		text-decoration: none;
+		border-radius: 10px;
+	}
+
+	.sidenav>a:hover {
+		background-color: #e7ebfe;
+	}
+
+	.sidenav>a>div {
+		width: 35px;
+	}
+
+	.sidenav>a>span {
+		color: #525a96;
+	}
+
+	a:visited {
+		color: inherit;
 	}
 </style>
 
@@ -194,7 +212,9 @@ require_once('header.php');
 			<div id="editImgCont">
 				<img id="editImg" src="/app/assets/icons/draw.png" alt="">
 			</div>
-			<img id="profileImage" src="/assets/<?= $user['profilePicture'] ?>" alt="pro-pic">
+			<div id="proPic-border">
+				<img id="profileImage" src="/assets/<?= $user['profilePicture'] ?>" alt="pro-pic">
+			</div>
 		</div>
 		<form action="/app/controllers/AccountSettings/changeProPic.php" method="POST" enctype="multipart/form-data">
 			<input type="file" name="proPic" hidden>
@@ -207,39 +227,49 @@ require_once('header.php');
 			<input type="reset" name="clearProPic" value="Clear" hidden>
 		</form>
 
-		<p id="name"><?= $user['name'] ?></p>
-		<p id="role">Role : <?= $user['role'] ?></p>
+		<span id="name"><?= $user['name'] ?></span>
+		<span id="role">Role : <?= $user['role'] ?></span>
 
-		<form action="#" method="POST">
+		<form class="sidenav" action="#" method="POST">
 			<a href="?section=main">
 				<div>
-					<img src="/app/assets/icons/dashboard.png" alt="">
-					Dashboard
+					<img class="sidenavicon" src="/app/assets/icons/dashboard.png" alt="">
 				</div>
+				<span>
+					Dashboard
+				</span>
 			</a>
 			<a href="?section=editProfile">
 				<div>
-					<img src="/app/assets/icons/edit.png" alt="">
-					Edit Profile
+					<img class="sidenavicon" src="/app/assets/icons/edit.png" alt="">
 				</div>
+				<span>
+					Edit Profile
+				</span>
 			</a>
 			<a href="?section=changePassword">
 				<div>
-					<img src="/app/assets/icons/padlock.png" alt="">
-					Change Password
+					<img class="sidenavicon" src="/app/assets/icons/padlock.png" alt="">
 				</div>
+				<span>
+					Change Password
+				</span>
 			</a>
 			<a href="?section=manageSession">
 				<div>
-					<img src="/app/assets/icons/history.png" alt="">
-					Manage Session
+					<img class="sidenavicon" src="/app/assets/icons/history.png" alt="">
 				</div>
+				<span>
+					Manage Session
+				</span>
 			</a>
 			<a href="/app/controllers/logout.php">
 				<div>
-					<img src="/app/assets/icons/logout.png" alt="">
-					Logout
+					<img class="sidenavicon" src="/app/assets/icons/logout.png" alt="">
 				</div>
+				<span>
+					Logout
+				</span>
 			</a>
 		</form>
 	</div>
