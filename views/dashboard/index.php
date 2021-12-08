@@ -83,7 +83,7 @@ require_once('header.php');
 
 	.sidebar>form>a>div {
 		display: flex;
-		width: 222px;
+		width: 240px;
 		align-items: center;
 
 	}
@@ -144,7 +144,8 @@ require_once('header.php');
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		translate: 40px 100px;
+		/* translate: 40px 100px; */
+		transform: translate(40px, 100px);
 		cursor: pointer;
 	}
 
