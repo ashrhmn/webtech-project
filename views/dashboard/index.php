@@ -208,12 +208,21 @@ $rightArrow = '
 		transition: all linear 0.5s;
 	}
 
+	.activenav{
+		background-color: #dfe2ee;
+	}
+
 	.sidenav>a>div {
 		width: 35px;
 	}
 
 	.sidenav>a>span {
 		color: #525a96;
+	}
+
+	.sidenav>a>span:hover {
+		color: #2e4dfb;
+		transition: all linear 0.5s;
 	}
 
 	a:visited {
@@ -246,7 +255,7 @@ $rightArrow = '
 		<span id="role">Role : <?= $user['role'] ?></span>
 
 		<form class="sidenav" action="#" method="POST">
-			<a href="?section=main">
+			<a class="<?= (!isset($_GET['section']) || $_GET['section'] == 'main') ? 'activenav' : '' ?>" href="?section=main">
 				<div>
 					<img class="sidenavicon" src="/app/assets/icons/dashboard.png" alt="">
 				</div>
@@ -255,7 +264,7 @@ $rightArrow = '
 				</span>
 				<?= (!isset($_GET['section']) || $_GET['section'] == 'main') ? $rightArrow : '' ?>
 			</a>
-			<a href="?section=editProfile">
+			<a class="<?= (isset($_GET['section']) && $_GET['section'] == 'editProfile') ? 'activenav' : '' ?>" href="?section=editProfile">
 				<div>
 					<img class="sidenavicon" src="/app/assets/icons/edit.png" alt="">
 				</div>
@@ -264,7 +273,7 @@ $rightArrow = '
 				</span>
 				<?= (isset($_GET['section']) && $_GET['section'] == 'editProfile') ? $rightArrow : '' ?>
 			</a>
-			<a href="?section=changePassword">
+			<a class="<?= (isset($_GET['section']) && $_GET['section'] == 'changePassword') ? 'activenav' : '' ?>" href="?section=changePassword">
 				<div>
 					<img class="sidenavicon" src="/app/assets/icons/padlock.png" alt="">
 				</div>
@@ -273,8 +282,8 @@ $rightArrow = '
 				</span>
 				<?= (isset($_GET['section']) && $_GET['section'] == 'changePassword') ? $rightArrow : '' ?>
 			</a>
-			<a href="?section=manageSession">
-				<div>
+			<a class="<?= (isset($_GET['section']) && $_GET['section'] == 'manageSession') ? 'activenav' : '' ?>" href="?section=manageSession">
+			<div>
 					<img class="sidenavicon" src="/app/assets/icons/history.png" alt="">
 				</div>
 				<span>
