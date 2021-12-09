@@ -56,7 +56,6 @@
 	</table>
 </form>
 
-
 <script>
 	function enableSubmission() {
 		$('input[name="addNewUser"]').prop('disabled', false);
@@ -98,38 +97,6 @@
 				}
 			}
 		}
-
-		// $.ajax({
-		// 	url: '/app/controllers/admin/addUserValidate.php',
-		// 	type: 'POST',
-		// 	data: {
-		// 		username: usernameEl.val(),
-		// 		email: emailEl.val()
-		// 	},
-
-		// 	success: function(response) {
-		// 		let res = JSON.parse(response);
-		// 		$('input[name="username"]').next().text(res.usernameMsg);
-		// 		$('input[name="email"]').next().text(res.emailMsg);
-
-		// 		if (res.usernameMsg == "" && res.emailMsg == "") {
-		// 			$('input[name="username"]').css('border', '1px solid green');
-		// 			$('input[name="email"]').css('border', '1px solid green');
-		// 			enableSubmission()
-		// 		} else {
-		// 			disableSubmission()
-		// 			if (res.usernameMsg != "") {
-		// 				$('input[name="username"]').css('border', '1px solid red');
-		// 			}
-		// 			if (res.emailMsg != "") {
-		// 				$('input[name="email"]').css('border', '1px solid red');
-		// 			}
-		// 		}
-		// 	},
-		// 	error: function(error) {
-		// 		console.log(error);
-		// 	}
-		// });
 	}
 
 	$('input[name="username"]').on('keyup', checkUsernameAndEmail);
