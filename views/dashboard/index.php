@@ -1,5 +1,11 @@
 <?php
 require_once('header.php');
+
+$rightArrow = '
+	<svg xmlns="http://www.w3.org/2000/svg" class="rightArrow" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+	<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+  </svg>
+  ';
 ?>
 
 <script src="/app/scripts/jquery.js"></script>
@@ -65,8 +71,14 @@ require_once('header.php');
 </script>
 
 <style>
+	.rightArrow {
+		height: 25px;
+		width: 25px;
+	}
+
 	body {
 		font-family: 'Poppins', sans-serif;
+		background-color: #d7dae0;
 		/* background-image: linear-gradient(to right, #0a47fb, #054efc, #0454fd, #065afe, #0c60ff, #2b62ff, #3c63ff, #4965ff, #5f63ff, #7260ff, #835dff, #9259ff); */
 	}
 
@@ -77,10 +89,11 @@ require_once('header.php');
 		left: 0;
 		top: 0;
 		height: 100%;
-		width: 250px;
+		width: 300px;
 		/* background-color: #0a47fb; */
-		background-color: #fff;
+		background-color: #d7dae0;
 		align-items: center;
+		z-index: 10;
 		/* line-height: 0.1; */
 	}
 
@@ -95,8 +108,8 @@ require_once('header.php');
 	#profileImage {
 		/* profile picture */
 
-		height: 100px;
-		width: 100px;
+		height: 150px;
+		width: 150px;
 		object-fit: cover;
 		border-radius: 50%;
 	}
@@ -104,12 +117,12 @@ require_once('header.php');
 
 	#proPic-border {
 		border: 2px solid;
-		border-color: #2747e9;
+		border-color: #2b9ce6;
 		border-radius: 50%;
 	}
 
 	.content {
-		margin-left: 250;
+		margin-left: 300;
 		/* padding: 10px; */
 	}
 
@@ -122,15 +135,15 @@ require_once('header.php');
 
 	#editImgCont {
 		border: 1px solid;
-		width: 26px;
-		height: 26px;
+		width: 28px;
+		height: 28px;
 		margin: auto;
 		border-radius: 50%;
 		background-color: #2b9ce6;
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		transform: translate(40px, 100px);
+		transform: translate(50px, 150px);
 		cursor: pointer;
 	}
 
@@ -191,6 +204,7 @@ require_once('header.php');
 
 	.sidenav>a:hover {
 		background-color: #e7ebfe;
+		transition: all linear 0.5s;
 	}
 
 	.sidenav>a>div {
@@ -238,6 +252,7 @@ require_once('header.php');
 				<span>
 					Dashboard
 				</span>
+				<?= (!isset($_GET['section']) || $_GET['section'] == 'main') ? $rightArrow : '' ?>
 			</a>
 			<a href="?section=editProfile">
 				<div>
@@ -246,6 +261,7 @@ require_once('header.php');
 				<span>
 					Edit Profile
 				</span>
+				<?= (isset($_GET['section']) && $_GET['section'] == 'editProfile') ? $rightArrow : '' ?>
 			</a>
 			<a href="?section=changePassword">
 				<div>
@@ -254,6 +270,7 @@ require_once('header.php');
 				<span>
 					Change Password
 				</span>
+				<?= (isset($_GET['section']) && $_GET['section'] == 'changePassword') ? $rightArrow : '' ?>
 			</a>
 			<a href="?section=manageSession">
 				<div>
@@ -262,6 +279,7 @@ require_once('header.php');
 				<span>
 					Manage Session
 				</span>
+				<?= (isset($_GET['section']) && $_GET['section'] == 'manageSession') ? $rightArrow : '' ?>
 			</a>
 			<a href="/app/controllers/logout.php">
 				<div>
