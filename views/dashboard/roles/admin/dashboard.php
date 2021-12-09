@@ -35,6 +35,8 @@ include_once('secureRoute.php');
     #dashboardView {
         margin-top: 100px;
         background-color: #fff;
+		margin-left: 30px;
+		margin-right: 30px;
         border-radius: 15px;
         padding: 15px;
         box-shadow:

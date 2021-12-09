@@ -91,7 +91,8 @@ $rightArrow = '
 		height: 100%;
 		width: 300px;
 		/* background-color: #0a47fb; */
-		background-color: #d7dae0;
+		/* background-color: #d7dae0; */
+		background-color: #c3c7d1;
 		align-items: center;
 		z-index: 10;
 		/* line-height: 0.1; */
