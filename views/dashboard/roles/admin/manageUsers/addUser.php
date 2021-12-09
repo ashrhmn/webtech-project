@@ -1,8 +1,12 @@
-<?php
-echo 'Add user';
-?>
+<style>
+	table{
+		border: 1px solid;
+		border-radius: 15px;
+		padding: 10px;
+	}
+</style>
 <form action="/app/controllers/admin/addUser.php" method="POST">
-	<table border="1">
+	<table>
 		<tr>
 			<td>Username</td>
 			<td><input type="text" name="username"><text></text></td>
@@ -52,7 +56,6 @@ echo 'Add user';
 	</table>
 </form>
 
-<button id="test">test</button>
 
 <script>
 	function enableSubmission() {
