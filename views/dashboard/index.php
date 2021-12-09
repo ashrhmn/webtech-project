@@ -1,5 +1,11 @@
 <?php
 require_once('header.php');
+
+$rightArrow = '
+	<svg xmlns="http://www.w3.org/2000/svg" class="rightArrow" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+	<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+  </svg>
+  ';
 ?>
 
 <script src="/app/scripts/jquery.js"></script>
@@ -65,8 +71,15 @@ require_once('header.php');
 </script>
 
 <style>
+	.rightArrow {
+		height: 25px;
+		width: 25px;
+	}
+
 	body {
 		font-family: 'Poppins', sans-serif;
+		background-color: #d7dae0;
+		/* background-image: linear-gradient(to right, #0a47fb, #054efc, #0454fd, #065afe, #0c60ff, #2b62ff, #3c63ff, #4965ff, #5f63ff, #7260ff, #835dff, #9259ff); */
 	}
 
 	.sidebar {
@@ -76,55 +89,41 @@ require_once('header.php');
 		left: 0;
 		top: 0;
 		height: 100%;
-		width: 250px;
-		background-color: #0a47fb;
+		width: 300px;
+		/* background-color: #0a47fb; */
+		background-color: #d7dae0;
 		align-items: center;
+		z-index: 10;
+		/* line-height: 0.1; */
 	}
 
-	.sidebar>form>a>div {
-		display: flex;
-		width: 222px;
-		align-items: center;
-
-	}
-
-	.sidebar>form>a {
-		color: white;
-		text-decoration: none;
-		font-size: 20px;
-
-	}
-
-	.sidebar>form>a>div>img {
+	.sidenavicon {
 		height: 25px;
 		width: 25px;
-		filter: invert(100%);
+		/* filter: invert(40%); */
+		filter: brightness(0.4) invert(.1) sepia(.3) hue-rotate(100deg) saturate(300%);
 	}
 
-	.sidebar>form>a>div>* {
-		padding: 15px;
-	}
 
 	#profileImage {
 		/* profile picture */
 
-		height: 100px;
-		width: 100px;
+		height: 150px;
+		width: 150px;
 		object-fit: cover;
-
-		border-radius: 50px;
-		border: 2px;
-		border-color: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 38%, rgba(0, 212, 255, 1) 100%);
-		border-style: solid;
+		border-radius: 50%;
 	}
 
-	#profile-container {
-		margin-top: 20px;
+
+	#proPic-border {
+		border: 2px solid;
+		border-color: #2b9ce6;
+		border-radius: 50%;
 	}
 
 	.content {
-		margin-left: 250;
-		padding: 10px;
+		margin-left: 300;
+		/* padding: 10px; */
 	}
 
 	#editImg {
@@ -136,37 +135,88 @@ require_once('header.php');
 
 	#editImgCont {
 		border: 1px solid;
-		width: 26px;
-		height: 26px;
+		width: 28px;
+		height: 28px;
 		margin: auto;
 		border-radius: 50%;
 		background-color: #2b9ce6;
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		translate: 40px 100px;
+		transform: translate(50px, 150px);
 		cursor: pointer;
 	}
 
-	#imgHandler {
+	/* #imgHandler {
 		display: flex;
-		justify-content: space-around;
-	}
+		justify-content: space-between;
+	} */
 
 	.btn {
 		height: 30px;
-		width: 100px;
+		width: 80px;
 		border: 0px;
 		border-radius: 30px;
+		margin: 5px;
 	}
 
 	.btn-blue {
 		background-color: rgba(11, 166, 255, 1);
 		color: white;
 	}
+
 	.btn-blue:hover {
 		background-color: rgba(76, 139, 245, 1);
 		color: white;
+	}
+
+	#name {
+		/* color: white; */
+		font-size: 28px;
+		font-weight: 900;
+		line-height: 1;
+		text-align: center;
+		padding: 0 2px;
+		/* background-color: #2747e9; */
+	}
+
+	#role {
+		/* color: white; */
+		font-size: 20px;
+		font-weight: 500;
+		/* background-color: #2b9ce6; */
+	}
+
+	.sidenav {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.sidenav>a {
+		/* background-color: #2747e9; */
+		padding: 10px;
+		display: flex;
+		align-items: center;
+		font-size: 20px;
+		text-decoration: none;
+		border-radius: 10px;
+	}
+
+	.sidenav>a:hover {
+		background-color: #e7ebfe;
+		transition: all linear 0.5s;
+	}
+
+	.sidenav>a>div {
+		width: 35px;
+	}
+
+	.sidenav>a>span {
+		color: #525a96;
+	}
+
+	a:visited {
+		color: inherit;
 	}
 </style>
 
@@ -176,59 +226,74 @@ require_once('header.php');
 			<div id="editImgCont">
 				<img id="editImg" src="/app/assets/icons/draw.png" alt="">
 			</div>
-			<img id="profileImage" src="/assets/<?= $user['profilePicture'] ?>" alt="pro-pic">
+			<div id="proPic-border">
+				<img id="profileImage" src="/assets/<?= $user['profilePicture'] ?>" alt="pro-pic">
+			</div>
 		</div>
-		<div id="imgHandler">
-			<form action="/app/controllers/AccountSettings/changeProPic.php" method="POST" enctype="multipart/form-data">
-				<input type="file" name="proPic" hidden>
-				<text id="err"></text>
-				<br>
+		<form action="/app/controllers/AccountSettings/changeProPic.php" method="POST" enctype="multipart/form-data">
+			<input type="file" name="proPic" hidden>
+			<text id="err"></text>
+			<br>
+			<div id="imgHandler">
 				<input class="btn btn-blue" type="submit" name="submitProPic" value="Update" hidden>
-				<input type="reset" name="clearProPic" value="Clear" hidden>
 				<button class="btn" id="discard" hidden>Discard</button>
-			</form>
-		</div>
+			</div>
+			<input type="reset" name="clearProPic" value="Clear" hidden>
+		</form>
 
+		<span id="name"><?= $user['name'] ?></span>
+		<span id="role">Role : <?= $user['role'] ?></span>
 
-		<form action="#" method="POST">
+		<form class="sidenav" action="#" method="POST">
 			<a href="?section=main">
 				<div>
-					<img src="/app/assets/icons/dashboard.png" alt="">
-					Dashboard
+					<img class="sidenavicon" src="/app/assets/icons/dashboard.png" alt="">
 				</div>
+				<span>
+					Dashboard
+				</span>
+				<?= (!isset($_GET['section']) || $_GET['section'] == 'main') ? $rightArrow : '' ?>
 			</a>
 			<a href="?section=editProfile">
 				<div>
-					<img src="/app/assets/icons/edit.png" alt="">
-					Edit Profile
+					<img class="sidenavicon" src="/app/assets/icons/edit.png" alt="">
 				</div>
+				<span>
+					Edit Profile
+				</span>
+				<?= (isset($_GET['section']) && $_GET['section'] == 'editProfile') ? $rightArrow : '' ?>
 			</a>
 			<a href="?section=changePassword">
 				<div>
-					<img src="/app/assets/icons/padlock.png" alt="">
-					Change Password
+					<img class="sidenavicon" src="/app/assets/icons/padlock.png" alt="">
 				</div>
+				<span>
+					Change Password
+				</span>
+				<?= (isset($_GET['section']) && $_GET['section'] == 'changePassword') ? $rightArrow : '' ?>
 			</a>
 			<a href="?section=manageSession">
 				<div>
-					<img src="/app/assets/icons/history.png" alt="">
-					Manage Session
+					<img class="sidenavicon" src="/app/assets/icons/history.png" alt="">
 				</div>
+				<span>
+					Manage Session
+				</span>
+				<?= (isset($_GET['section']) && $_GET['section'] == 'manageSession') ? $rightArrow : '' ?>
 			</a>
 			<a href="/app/controllers/logout.php">
 				<div>
-					<img src="/app/assets/icons/logout.png" alt="">
-					Logout
+					<img class="sidenavicon" src="/app/assets/icons/logout.png" alt="">
 				</div>
+				<span>
+					Logout
+				</span>
 			</a>
 		</form>
 	</div>
 </div>
 
 <div class="content">
-	<h1>Welcome <?= $user['name'] ?></h1>
-	<hr>
-	<br>
 
 	<div><?php
 			if (!isset($_GET['section'])) {
