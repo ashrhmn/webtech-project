@@ -1,9 +1,3 @@
-<?php
-
-echo 'New Equipment';
-
-?>
-
 <form action="/app/controllers/admin/addEquipment.php" method="POST">
 	<table>
 		<tr>

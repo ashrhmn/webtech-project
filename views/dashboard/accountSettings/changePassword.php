@@ -27,6 +27,14 @@
 			11.8px 14.6px 16.9px -1px rgba(0, 0, 0, 0.063),
 			21px 26px 30px -1px rgba(0, 0, 0, 0.08);
 	}
+
+	td {
+		font-size: 24px;
+	}
+
+	td>input {
+		font-size: 24px;
+	}
 </style>
 
 <div class="container">

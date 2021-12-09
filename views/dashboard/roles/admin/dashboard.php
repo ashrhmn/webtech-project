@@ -18,18 +18,21 @@ include_once('secureRoute.php');
         justify-content: end;
     }
 
-    nav>a {
+    .dashNav {
         text-decoration: none;
-        /* background-color: #2478f1; */
+        background-color: #2478f1;
         padding: 2px 5px;
         margin: 0 10px;
-        color: white;
+        /* color: #58609a; */
+        color: #eff2ff;
         border-radius: 5px;
     }
 
     nav>a:hover {
-        background-color: #9fa1ab;
-        transition: all linear 0.5s;
+        /* background-color: #9fa1ab; */
+        background-color: #1a54d7;
+        /* color: #2a47fb; */
+        transition: all linear 0.15s;
     }
 
     #dashboardView {
@@ -55,10 +58,10 @@ include_once('secureRoute.php');
 <br>
 <form action="#" method="POST">
     <nav>
-        <a href="?tab=manageUsers">Users</a>
-        <a href="?tab=equipments">Equipments</a>
-        <a href="?tab=orders">Orders</a>
-        <a href="?tab=availableDoctors">Available Doctors</a>
+        <a class="dashNav" href="?tab=manageUsers">Users</a>
+        <a class="dashNav" href="?tab=equipments">Equipments</a>
+        <a class="dashNav" href="?tab=orders">Orders</a>
+        <a class="dashNav" href="?tab=availableDoctors">Available Doctors</a>
     </nav>
 </form>
 

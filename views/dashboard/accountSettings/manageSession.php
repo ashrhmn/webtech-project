@@ -21,7 +21,8 @@ if (!$sessions) {
 		background-color: #fff;
 		margin: 0 30px;
 		border-radius: 15px;
-		padding: 10px;
+		border-collapse: collapse;
+		padding: 20px;
 		box-shadow:
 			0.3px 0.4px 0.5px -1px rgba(0, 0, 0, 0.017),
 			0.7px 0.9px 1px -1px rgba(0, 0, 0, 0.025),
@@ -34,14 +35,31 @@ if (!$sessions) {
 			11.8px 14.6px 16.9px -1px rgba(0, 0, 0, 0.063),
 			21px 26px 30px -1px rgba(0, 0, 0, 0.08);
 	}
+
+	td,tr{
+		padding: 10px;
+	}
+
+	.oddRow{
+		background-color: #b6bac7;
+		border-radius: 15px;
+	}
+
+	.evenRow{
+		background-color: #cbcfd6;
+	}
+
+	.session {
+		word-break: break-all;
+	}
 </style>
 <div class="container">
-	<table border="0">
+	<table>
 		<?php
 		for ($i = 0; $i < count($sessions); ++$i) {
 		?>
-			<tr>
-				<td><?= $sessions[$i]['token'] ?><?= $sessions[$i]['token'] == $_COOKIE['token'] ? ' (current) ' : ''  ?> <br><br> <?= $sessions[$i]['agent'] ?><br><br> Logged in on : <?= $sessions[$i]['time'] ?></td>
+			<tr class="<?=($i%2==0)?'evenRow':'oddRow'?>">
+				<td class="session"><?= $sessions[$i]['token'] ?><?= $sessions[$i]['token'] == $_COOKIE['token'] ? ' (current) ' : ''  ?> <br><br> <?= $sessions[$i]['agent'] ?><br><br> Logged in on : <?= $sessions[$i]['time'] ?></td>
 				<td><a href="/app/controllers/AccountSettings/deleteSession.php?token=<?= $sessions[$i]['token'] ?>">Revoke</a></td>
 			</tr>
 		<?php
