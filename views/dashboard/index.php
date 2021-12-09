@@ -74,6 +74,7 @@ $rightArrow = '
 	.rightArrow {
 		height: 25px;
 		width: 25px;
+		color: #414583;
 	}
 
 	body {
@@ -225,9 +226,9 @@ $rightArrow = '
 		transition: all linear 0.5s;
 	}
 
-	a:visited {
+	/* a:visited {
 		color: inherit;
-	}
+	} */
 </style>
 
 <div>

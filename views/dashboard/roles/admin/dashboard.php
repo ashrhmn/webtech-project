@@ -18,12 +18,13 @@ include_once('secureRoute.php');
         justify-content: end;
     }
 
-    nav>a {
+    .dashNav {
         text-decoration: none;
         background-color: #2478f1;
         padding: 2px 5px;
         margin: 0 10px;
         /* color: #58609a; */
+        color: #eff2ff;
         border-radius: 5px;
     }
 
@@ -57,10 +58,10 @@ include_once('secureRoute.php');
 <br>
 <form action="#" method="POST">
     <nav>
-        <a href="?tab=manageUsers">Users</a>
-        <a href="?tab=equipments">Equipments</a>
-        <a href="?tab=orders">Orders</a>
-        <a href="?tab=availableDoctors">Available Doctors</a>
+        <a class="dashNav" href="?tab=manageUsers">Users</a>
+        <a class="dashNav" href="?tab=equipments">Equipments</a>
+        <a class="dashNav" href="?tab=orders">Orders</a>
+        <a class="dashNav" href="?tab=availableDoctors">Available Doctors</a>
     </nav>
 </form>
 

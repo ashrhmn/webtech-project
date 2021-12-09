@@ -12,16 +12,49 @@ $equipments = getAllEquipments();
 // print_r($equipments);
 
 ?>
-<h4>Equipments</h4>
-<a href="?tab=equipments&subTab=list">List</a>
-<a href="?tab=equipments&subTab=new">Add New</a>
+<style>
+    .dataView {
+        display: flex;
+        width: 100%;
+        justify-content: center;
+    }
 
-<?php
+    .nav>a {
+        padding: 5px 30px;
+        margin: 20px 30px;
+        border: 0px;
+        font-size: 16px;
+        color: #fff;
+        border-radius: 5px;
+        background-color: #196ff1;
+        cursor: pointer;
+    }
 
-echo '<br>';
-if (isset($_GET['subTab'])) {
-    include($_GET['subTab'] . '.php');
-    return;
-}
+    .nav>a:hover {
+        background-color: #0a5099;
+        transition: all linear 0.25s;
+    }
 
-include('list.php');
+    .nav {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+</style>
+<div class="nav">
+    <a href="?tab=equipments&subTab=list">List</a>
+    <a href="?tab=equipments&subTab=new">Add New</a>
+</div>
+<div class="dataView">
+
+    <?php
+
+    echo '<br>';
+    if (isset($_GET['subTab'])) {
+        include($_GET['subTab'] . '.php');
+        return;
+    }
+
+    include('list.php');
+    ?>
+</div>
