@@ -25,7 +25,8 @@ $rightArrow = '
 				$('input[name="submitProPic"]').attr('disabled', true);
 				$('#err').text('');
 			} else {
-				const fileExt = $('input[name="proPic"]').get(0).files[0].name.split('.')[1].toString().toLowerCase();
+				const fileNameArr = $('input[name="proPic"]').get(0).files[0].name.split('.');
+				const fileExt = fileNameArr[fileNameArr.length - 1].toString().toLowerCase();
 				if (!["jpg", "jpeg", "png"].includes(fileExt)) {
 					$('input[name="submitProPic"]').attr('disabled', true);
 					$('#err').text('Invalid file type');
@@ -209,7 +210,7 @@ $rightArrow = '
 		transition: all linear 0.5s;
 	}
 
-	.activenav{
+	.activenav {
 		background-color: #dfe2ee;
 	}
 
@@ -284,7 +285,7 @@ $rightArrow = '
 				<?= (isset($_GET['section']) && $_GET['section'] == 'changePassword') ? $rightArrow : '' ?>
 			</a>
 			<a class="<?= (isset($_GET['section']) && $_GET['section'] == 'manageSession') ? 'activenav' : '' ?>" href="?section=manageSession">
-			<div>
+				<div>
 					<img class="sidenavicon" src="/app/assets/icons/history.png" alt="">
 				</div>
 				<span>
