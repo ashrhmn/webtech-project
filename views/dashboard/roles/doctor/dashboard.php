@@ -12,8 +12,7 @@ echo 'Doctor Dashboard' . "<br/>";
     <a class="anchor" href="/app/views/dashboard/roles/doctor/OTschedules.php">OT Schedules</a>
 
     <style>
-
-        .anchor {
+        /* .anchor {
             text-decoration: none;
             background-color: #f44336;
             color: white;
@@ -26,6 +25,25 @@ echo 'Doctor Dashboard' . "<br/>";
 
         .anchor:hover {
             background-color: blue;
+        } */
+        .anchor:link,
+        .anchor:visited {
+            margin: 2px;
+            padding: 2px;
+            color: white;
+            background-color: #1ebba3;
+            display: inline-block;
+            padding: 10px 20px;
+            border: 2px solid #099983;
+            text-decoration: none;
+            text-align: center;
+            font: 14px Arial, sans-serif;
+        }
+
+        .anchor:hover,
+        .anchor:active {
+            background-color: #9c6ae1;
+            border-color: #7443b6;
         }
     </style>
 </form>
