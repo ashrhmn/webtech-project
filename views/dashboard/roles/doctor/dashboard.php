@@ -12,6 +12,7 @@ echo 'Doctor Dashboard' . "<br/>";
     <a class="anchor" href="/app/views/dashboard/roles/doctor/OTschedules.php">OT Schedules</a>
 
     <style>
+
         .anchor {
             text-decoration: none;
             background-color: #f44336;
