@@ -99,3 +99,4 @@ $allUsers = getAllPatients();
         ?>
     </tbody>
 </table>
+<p align="center"><a class="back" href="/app/views/dashboard/">Back</a></p>
