@@ -1,19 +1,21 @@
 <?php
 
 require_once('../../repository/AuthRepo.php');
+require_once('../../repository/UserRepo.php');
 
 // $username = "ash";
 // $email = "nila@nil.com";
 
 $data = json_decode(file_get_contents('php://input'));
 
+$id = $data->id;
 $username = $data->username;
 $email = $data->email;
 
 // $username = $_POST['username'];
 // $email = $_POST['email'];
 
-$user = getLoggedInUser();
+$user = getUserById($id);
 
 // print_r($user);
 

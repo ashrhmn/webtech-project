@@ -88,6 +88,7 @@ if (!$user) {
 		$('input[name="editUser"]').prop('disabled', true);
 	}
 	const checkUsernameAndEmail = () => {
+		let idEl = $('input[name="id"]');
 		let usernameEl = $('input[name="username"]');
 		let emailEl = $('input[name="email"]');
 
@@ -96,6 +97,7 @@ if (!$user) {
 		xmlhttp.open("POST", url, true);
 		xmlhttp.setRequestHeader("Content-type", "application/json");
 		xmlhttp.send(JSON.stringify({
+			id: idEl.val(),
 			username: usernameEl.val(),
 			email: emailEl.val()
 		}));
