@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: db
--- Generation Time: Dec 13, 2021 at 04:29 AM
+-- Generation Time: Dec 13, 2021 at 07:59 AM
 -- Server version: 8.0.27
 -- PHP Version: 7.4.26
 
@@ -82,7 +82,8 @@ CREATE TABLE `bills` (
 INSERT INTO `bills` (`id`, `testName`, `testPrice`, `numOfTests`) VALUES
 (1, 'test1', 220.00, 2),
 (2, 'test2', 400.00, 4),
-(3, 'test3', 200.00, 3);
+(6, 'test2', 400.00, 5),
+(7, 'test2', 400.00, 6);
 
 -- --------------------------------------------------------
 
@@ -140,6 +141,27 @@ INSERT INTO `equipments` (`id`, `name`, `count`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `orders`
+--
+
+CREATE TABLE `orders` (
+  `id` int NOT NULL,
+  `patientId` int NOT NULL,
+  `billId` int NOT NULL,
+  `paidAmount` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`id`, `patientId`, `billId`, `paidAmount`) VALUES
+(1, 15, 2, 200),
+(4, 15, 6, 1900);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `OTschedules`
 --
 
@@ -189,7 +211,8 @@ INSERT INTO `session` (`id`, `userId`, `token`, `agent`, `time`) VALUES
 (5, 12, '246291a86a83133494a67f1b8886232a905d4912e396bb1f6dcfc0e0dd625fe0a2f23598aa', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:94.0) Gecko/20100101 Firefox/94.0', '2021-11-15 21:51:03'),
 (8, 13, 'f366aee83c118d977bf39aeb25966dd46d297f461f0151086dcf84a763eb490f3624566a86', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:94.0) Gecko/20100101 Firefox/94.0', '2021-11-29 08:02:02'),
 (10, 6, '6e6a5a9d52999894bf7d052a7d97ab6491b779af607ebb4edd26095d8c97fec277cb0d9c54', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.54 Safari/537.36', '2021-12-08 15:36:20'),
-(27, 22, '12782709121dd7187ac239939bbfea892062d762e7ff4acb05c618356310da8e8a82fa11fd', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:95.0) Gecko/20100101 Firefox/95.0', '2021-12-13 04:27:28');
+(27, 22, '12782709121dd7187ac239939bbfea892062d762e7ff4acb05c618356310da8e8a82fa11fd', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:95.0) Gecko/20100101 Firefox/95.0', '2021-12-13 04:27:28'),
+(29, 22, 'b9ce01961f2ae190ca427841eb4d0f73ee9039890ef8e4ade30bc80e43cc07d499f3dd8b53', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:95.0) Gecko/20100101 Firefox/95.0', '2021-12-13 05:43:05');
 
 -- --------------------------------------------------------
 
@@ -217,7 +240,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `name`, `username`, `email`, `password`, `role`, `address`, `phone`, `gender`, `dateOfBirth`, `profilePicture`) VALUES
 (6, 'Ashik Rahman', 'ash', 'ash@ash.com', 'ash', 'Admin', 'Shahzadpur Sirajgonj', '+8801746553758', 'Male', '1999-01-25', 'user/1638995021-6-Image_5 2019-04-21_22-41-13.jpeg'),
-(9, 'Nil rahman', 'nila', 'nila@nil.com', 'nil', 'Doctor', 'sasca', 'ascascasc', 'Male', '1999-11-09', 'default.png'),
+(9, 'Nil rahman', 'nil', 'nil@nil.com', 'nil', 'Doctor', 'sasca', 'ascascasc', 'Male', '1999-11-09', 'default.png'),
 (10, 'asha', 'asha', 'asha@aa.aa', 'asha', 'Doctor', 'Shahzadpur, Sirajgonj', '2342342344444', 'Male', '2021-11-02', 'default.png'),
 (11, 'Ashik R', 'aaa', 'aaa@a.a', 'aaa', 'Doctor', 'asdfghjk', 'aaaaaaaaaaa', 'Male', '2021-11-15', 'default.png'),
 (12, 'DOctor 1', 'doc1', 'doc1@d.d', 'doc1', 'Doctor', 'jsdhlsdjvhb', 'bljinbl;', 'Male', '2001-01-01', 'user/1639355713-12-user3.jpg'),
@@ -260,6 +283,12 @@ ALTER TABLE `equipments`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `orders`
+--
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `session`
 --
 ALTER TABLE `session`
@@ -282,7 +311,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `bills`
 --
 ALTER TABLE `bills`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `equipments`
@@ -291,10 +320,16 @@ ALTER TABLE `equipments`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
+-- AUTO_INCREMENT for table `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT for table `session`
 --
 ALTER TABLE `session`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `users`

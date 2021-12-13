@@ -77,6 +77,12 @@ function getAllDoctor()
 	return preparedQueryToAssocArray("select * from users where role=?", 's', $role);
 }
 
+function getAllPatient()
+{
+	$role = 'Patient';
+	return preparedQueryToAssocArray("select * from users where role=?", 's', $role);
+}
+
 function setProPic($path)
 {
 	return isPreparedStatementExecuted("update users set profilePicture=? where id=?", 'si', $path, getLoggedInUserId());
