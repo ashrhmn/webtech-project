@@ -13,7 +13,8 @@ if (!$sessions) {
 		width: 100%;
 		height: 100%;
 		display: flex;
-		justify-content: center;
+		flex-direction: column;
+		/* justify-content: center; */
 		align-items: center;
 	}
 
@@ -24,28 +25,23 @@ if (!$sessions) {
 		border-collapse: collapse;
 		padding: 20px;
 		box-shadow:
-			0.3px 0.4px 0.5px -1px rgba(0, 0, 0, 0.017),
-			0.7px 0.9px 1px -1px rgba(0, 0, 0, 0.025),
-			1.2px 1.5px 1.7px -1px rgba(0, 0, 0, 0.031),
-			1.8px 2.3px 2.6px -1px rgba(0, 0, 0, 0.035),
-			2.6px 3.3px 3.8px -1px rgba(0, 0, 0, 0.04),
-			3.7px 4.6px 5.3px -1px rgba(0, 0, 0, 0.045),
-			5.3px 6.5px 7.5px -1px rgba(0, 0, 0, 0.049),
-			7.7px 9.5px 11px -1px rgba(0, 0, 0, 0.055),
-			11.8px 14.6px 16.9px -1px rgba(0, 0, 0, 0.063),
-			21px 26px 30px -1px rgba(0, 0, 0, 0.08);
+			1.4px 1px 2.8px -37px rgba(0, 0, 0, 0.024),
+			3.9px 2.6px 7.8px -37px rgba(0, 0, 0, 0.035),
+			9.3px 6.3px 18.7px -37px rgba(0, 0, 0, 0.046),
+			31px 21px 62px -37px rgba(0, 0, 0, 0.07);
 	}
 
-	td,tr{
+	td,
+	tr {
 		padding: 10px;
 	}
 
-	.oddRow{
+	.oddRow {
 		background-color: #b6bac7;
 		border-radius: 15px;
 	}
 
-	.evenRow{
+	.evenRow {
 		background-color: #cbcfd6;
 	}
 
@@ -54,11 +50,13 @@ if (!$sessions) {
 	}
 </style>
 <div class="container">
+	<h1>Logged in sessions</h1>
+	<h4>Where you are logged in</h4>
 	<table>
 		<?php
 		for ($i = 0; $i < count($sessions); ++$i) {
 		?>
-			<tr class="<?=($i%2==0)?'evenRow':'oddRow'?>">
+			<tr class="<?= ($i % 2 == 0) ? 'evenRow' : 'oddRow' ?>">
 				<td class="session"><?= $sessions[$i]['token'] ?><?= $sessions[$i]['token'] == $_COOKIE['token'] ? ' (current) ' : ''  ?> <br><br> <?= $sessions[$i]['agent'] ?><br><br> Logged in on : <?= $sessions[$i]['time'] ?></td>
 				<td><a href="/app/controllers/AccountSettings/deleteSession.php?token=<?= $sessions[$i]['token'] ?>">Revoke</a></td>
 			</tr>

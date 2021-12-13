@@ -21,19 +21,13 @@ if (!$user) {
 
 	.container>form {
 		background-color: #fff;
-		border-radius: 15px;
+		border-radius: 10px;
 		padding: 10px;
 		box-shadow:
-			0.3px 0.4px 0.5px -1px rgba(0, 0, 0, 0.017),
-			0.7px 0.9px 1px -1px rgba(0, 0, 0, 0.025),
-			1.2px 1.5px 1.7px -1px rgba(0, 0, 0, 0.031),
-			1.8px 2.3px 2.6px -1px rgba(0, 0, 0, 0.035),
-			2.6px 3.3px 3.8px -1px rgba(0, 0, 0, 0.04),
-			3.7px 4.6px 5.3px -1px rgba(0, 0, 0, 0.045),
-			5.3px 6.5px 7.5px -1px rgba(0, 0, 0, 0.049),
-			7.7px 9.5px 11px -1px rgba(0, 0, 0, 0.055),
-			11.8px 14.6px 16.9px -1px rgba(0, 0, 0, 0.063),
-			21px 26px 30px -1px rgba(0, 0, 0, 0.08);
+			1.4px 1px 2.8px -37px rgba(0, 0, 0, 0.024),
+			3.9px 2.6px 7.8px -37px rgba(0, 0, 0, 0.035),
+			9.3px 6.3px 18.7px -37px rgba(0, 0, 0, 0.046),
+			31px 21px 62px -37px rgba(0, 0, 0, 0.07);
 	}
 
 	td {
@@ -62,7 +56,7 @@ if (!$user) {
 				<td><input type="text" name="email" value="<?= $user['email'] ?>"><text></text></td>
 			</tr>
 			<tr>
-				<td>Gender</td>
+				<td>Gender : </td>
 				<td>
 					<input type="radio" name="gender" value="Male" <?= $user['gender'] == 'Male' ? 'checked' : '' ?>>Male
 					<input type="radio" name="gender" value="Female" <?= $user['gender'] == 'Female' ? 'checked' : '' ?>>Female
@@ -70,15 +64,15 @@ if (!$user) {
 				</td>
 			</tr>
 			<tr>
-				<td>Date Of Birth</td>
+				<td>Date Of Birth : </td>
 				<td><input type="date" name="dateOfBirth" value="<?= $user['dateOfBirth'] ?>"></td>
 			</tr>
 			<tr>
-				<td>Address</td>
+				<td>Address : </td>
 				<td><input type="text" name="address" value="<?= $user['address'] ?>"></td>
 			</tr>
 			<tr>
-				<td>Phone</td>
+				<td>Phone : </td>
 				<td><input type="text" name="phone" value="<?= $user['phone'] ?>"></td>
 			</tr>
 			<tr>
