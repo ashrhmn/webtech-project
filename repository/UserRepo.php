@@ -18,9 +18,15 @@ function saveUserEdits($user)
 
 	return (isPreparedStatementExecuted("update users set username=?, name=?, email=?, address=?, gender=?, role=?, dateOfBirth=?, phone=? where id=?", 'ssssssssi', $user['username'], $user['name'], $user['email'], $user['address'], $user['gender'], $user['role'], $user['dateOfBirth'], $user['phone'], $oldUser['id'])) ? 1 : -2;
 }
+
 function getAllUser()
 {
 	return queryToAssocArray("select * from users");
+}
+
+function getAllUserFiltered($filter)
+{
+	return preparedQueryToAssocArray("select id,username,email,name,role,address,gender,dateOfBirth,phone from users where id like ? or username like ? or email like ? or name like ? or role like ? or address like ? or gender like ? or dateOfBirth like ? or phone like ?", 'sssssssss', $filter, $filter, $filter, $filter, $filter, $filter, $filter, $filter, $filter);
 }
 
 function OTpatients()
