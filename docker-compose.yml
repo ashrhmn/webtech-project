@@ -29,8 +29,7 @@ services:
       - fs:/srv
   mysql:
     container_name: wt-mysql
-    build: ./data/mysql
-    image: ashrhmn/wt-mysql
+    image: mysql
     environment:
       MYSQL_ROOT_PASSWORD: rootash
       MYSQL_USER: ${DB_USER}
@@ -40,6 +39,7 @@ services:
     #   - 3307:3306
     volumes:
       #- ./data/mysql_data:/var/lib/mysql
+      - ./data/mysql/dcms.sql:/docker-entrypoint-initdb.d/dcms.sql
       - mysql_data:/var/lib/mysql
   phpmyadmin:
     container_name: wt-myadmin
