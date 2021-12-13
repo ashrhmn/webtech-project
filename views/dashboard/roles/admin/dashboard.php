@@ -10,18 +10,19 @@ include_once('secureRoute.php');
         display: flex;
         align-items: center;
         height: 100px;
-        background-color: #d7dae0;
+        /* background-color: #d7dae0; */
+        background-color: #ccd0d8;
         position: fixed;
         top: 0;
-        right: 0;
+        left: 0;
         width: 100%;
-        justify-content: end;
+        justify-content: center;
     }
 
-    .dashNav {
+    nav>a {
         text-decoration: none;
         background-color: #2478f1;
-        padding: 2px 5px;
+        padding: 10px 50px;
         margin: 0 10px;
         /* color: #58609a; */
         color: #eff2ff;
@@ -36,32 +37,27 @@ include_once('secureRoute.php');
     }
 
     #dashboardView {
-        margin-top: 100px;
+        margin-top: 200px;
         background-color: #fff;
-		margin-left: 30px;
-		margin-right: 30px;
-        border-radius: 15px;
+        margin-left: 30px;
+        margin-right: 30px;
+        border-radius: 10px;
         padding: 15px;
+        overflow: scroll;
         box-shadow:
-            0.3px 0.4px 0.5px -1px rgba(0, 0, 0, 0.017),
-            0.7px 0.9px 1px -1px rgba(0, 0, 0, 0.025),
-            1.2px 1.5px 1.7px -1px rgba(0, 0, 0, 0.031),
-            1.8px 2.3px 2.6px -1px rgba(0, 0, 0, 0.035),
-            2.6px 3.3px 3.8px -1px rgba(0, 0, 0, 0.04),
-            3.7px 4.6px 5.3px -1px rgba(0, 0, 0, 0.045),
-            5.3px 6.5px 7.5px -1px rgba(0, 0, 0, 0.049),
-            7.7px 9.5px 11px -1px rgba(0, 0, 0, 0.055),
-            11.8px 14.6px 16.9px -1px rgba(0, 0, 0, 0.063),
-            21px 26px 30px -1px rgba(0, 0, 0, 0.08);
+            1.4px 1px 2.8px -37px rgba(0, 0, 0, 0.024),
+            3.9px 2.6px 7.8px -37px rgba(0, 0, 0, 0.035),
+            9.3px 6.3px 18.7px -37px rgba(0, 0, 0, 0.046),
+            31px 21px 62px -37px rgba(0, 0, 0, 0.07);
     }
 </style>
 <br>
 <form action="#" method="POST">
     <nav>
-        <a class="dashNav" href="?tab=manageUsers">Users</a>
-        <a class="dashNav" href="?tab=equipments">Equipments</a>
-        <a class="dashNav" href="?tab=orders">Orders</a>
-        <a class="dashNav" href="?tab=availableDoctors">Available Doctors</a>
+        <a href="?tab=manageUsers">Users</a>
+        <a href="?tab=equipments">Equipments</a>
+        <a href="?tab=orders">Orders</a>
+        <a href="?tab=availableDoctors">Available Doctors</a>
     </nav>
 </form>
 

@@ -13,7 +13,7 @@ $allUsers = getAllUser();
 
 <style>
     .nav>input {
-        padding: 10px 80px;
+        padding: 8px 40px;
         margin: 20px 30px;
         border: 0px;
         font-size: 24px;
@@ -29,9 +29,14 @@ $allUsers = getAllUser();
     }
 
     .nav {
+        position: fixed;
         width: 100%;
         display: flex;
         justify-content: center;
+        top: 100;
+        left: 100;
+        right: 100;
+        background-color: #ccd0d8;
     }
 
     .dataView{
