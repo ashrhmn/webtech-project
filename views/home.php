@@ -77,4 +77,20 @@ include("nav.php");
         background: #fff;
         color: #333;
     }
+
+    @media (max-width:600px) {
+        .wrapper {
+            width: 100%;
+        }
+
+        .welcome-text {
+            width: 100%;
+            height: auto;
+            margin: 30% 0;
+        }
+
+        .welcome-text h1 {
+            font-size: 30px;
+        }
+    }
 </style>
