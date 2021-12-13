@@ -12,7 +12,6 @@ require('secureRoute.php');
     <a href="?tab=createOrder">Create Order</a>
     <a href="?tab=billList">Bill List</a>
     <a href="?tab=createbill">Create Bill</a>
-    <a href="?tab=appointment">Appointment</a>
 </form>
 
 <hr>
